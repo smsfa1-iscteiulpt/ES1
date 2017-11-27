@@ -17,10 +17,13 @@ import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.AbstractTableModel;
+import javax.swing.table.DefaultTableModel;
+
 import antiSpamFilter.Functions;
 
 
-public class Gui {
+public class Gui extends AbstractTableModel {
 
 	private JFrame frame;
 	private int WindowX = 1000;
@@ -32,8 +35,10 @@ public class Gui {
 	private JTable tabela1;
 	private JTable tabela2;
 	private String [] colums = {"Regra", "Peso"};
-	
-	
+	private JPanel manual;
+	private JScrollPane scroll;
+	private DefaultTableModel model;
+	private DefaultTableModel model1;
 	/**
 	* Creating the window.
 	*/
@@ -61,7 +66,7 @@ public class Gui {
 	*/
 	private void addFrameContent() {
 		
-	//Criar o Painel de ConfiguraÃ§Ã£o
+	//Criar o Painel de Configuração
 	 JPanel config = new JPanel();
 	 config.setLayout(new GridLayout(4,2, 10, 10));
 	 config.setBorder(new EmptyBorder(2, 0, 2, 100));
@@ -93,14 +98,19 @@ public class Gui {
 	 confirm.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(regras.getText().equals("")||spam1.getText().equals("")||ham1.getText().equals("")){
-					JOptionPane.showMessageDialog(frame, "Tem de preencher todas as opÃ§Ãµes");
+					JOptionPane.showMessageDialog(frame, "Tem de preencher todas as opções");
 				}else{
-					System.out.println(allrules[0][1]);
+					System.out.println(tabela1.getValueAt(1, 1));
 					rulespath=regras.getText();
 					hampath=ham1.getText();
 					spampath=spam1.getText();
 					allrules = Functions.getRules(rulespath);
-					System.out.println(allrules[0][1]);
+					((DefaultTableModel) tabela1.getModel()).getDataVector().removeAllElements();
+					for(int i =0;i<allrules.length;i++){
+						((DefaultTableModel) tabela1.getModel()).insertRow(tabela1.getRowCount(),(Object[])allrules[i]);
+					}
+					scroll.repaint();
+					frame.repaint();
 				}
 			}
 		});
@@ -117,23 +127,22 @@ public class Gui {
 	 
 	 frame.add(config,BorderLayout.NORTH);
 	 
-	 //criar o painel que junta os mÃ©todos de criaÃ§Ã£o de configuraÃ§Ã£o
+	 //criar o painel que junta os métodos de criação de configuração
 	 
 	 JPanel join = new JPanel();
 	 join.setLayout(new GridLayout(2,0));
 	 
-	 //criar o painel de introduÃ§Ã£o manual
+	 //criar o painel de introdução manual
 	 
 	 
-	 //Painel extra para garantir a posiÃ§Ã£o dos botÃµes
+	 //Painel extra para garantir a posição dos botões
 	 JPanel extra = new JPanel();
 	 extra.setLayout(new GridLayout(3,0));
 	 
 	 //painel principal
-	 JPanel manual = new JPanel();
+	 manual = new JPanel();
 	 manual.setLayout(new FlowLayout());
 	
-	 
 	 
 	 JButton runmanual = new JButton("Testar");
 	 runmanual.addActionListener(new ActionListener() {
@@ -156,18 +165,30 @@ public class Gui {
 	 resulman.setText("FP:"+System.lineSeparator()+"FN:"+System.lineSeparator()+"                    ");
 	 
 	 allrules = Functions.getRules("rules.cf");
-	 tabela1 = new JTable(allrules,colums);
 	 
-	 extra.add(new JLabel("ConfiguraÃ§Ã£o Manual"));
+	 model = new DefaultTableModel(allrules,colums){
+		 public boolean isCellEditable(int row, int col) {
+		        if (col== 1) { //columnIndex: the column you want to make it editable
+		            return true;
+		        } else {
+		            return false;
+		        }
+		    }
+		 
+	 };
+	 tabela1 = new JTable(model);
+	 scroll = new JScrollPane(tabela1);
+	 
+	 extra.add(new JLabel("Configuração Manual"));
 	 extra.add(runmanual);
 	 extra.add(save);
 	 manual.add(extra);
 	 manual.add(resulman);
-	 manual.add(new JScrollPane(tabela1));
+	 manual.add(scroll);
 	 
-	 //criar o painel para introduÃ§Ã£o automÃ¡tica
+	 //criar o painel para introdução automática
 	 
-	 	//Painel extra para garantir a posiÃ§Ã£o dos botÃµes
+	 	//Painel extra para garantir a posição dos botões
 		 JPanel extra1 = new JPanel();
 		 extra1.setLayout(new GridLayout(3,0));
 		 
@@ -177,7 +198,7 @@ public class Gui {
 		
 		 
 		 
-		 JButton runauto = new JButton("Gerar ConfiguraÃ§Ã£o");
+		 JButton runauto = new JButton("Gerar Configuração");
 		 runauto.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					
@@ -198,9 +219,16 @@ public class Gui {
 		 resulauto.setText("FP:"+System.lineSeparator()+"FN:"+System.lineSeparator()+"                    ");
 		 
 		 Object [][] allrules1 = Functions.getRules("rules.cf");
-		 tabela2 = new JTable(allrules1,colums);
 		 
-		 extra1.add(new JLabel("ConfiguraÃ§Ã£o AutomÃ¡tica"));
+		 model1 = new DefaultTableModel(allrules,colums){
+			 public boolean isCellEditable(int row, int col) {
+			            return false;
+			    }
+		 };
+		 
+		 tabela2 = new JTable(model1);
+		 
+		 extra1.add(new JLabel("Configuração Automática"));
 		 extra1.add(runauto);
 		 extra1.add(save1);
 		 auto.add(extra1);
@@ -229,8 +257,28 @@ public class Gui {
 	public String getSpampath() {
 		return spampath;
 	}
+
+
+	@Override
+	public int getColumnCount() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	@Override
+	public int getRowCount() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	@Override
+	public Object getValueAt(int arg0, int arg1) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 	
 }
-
