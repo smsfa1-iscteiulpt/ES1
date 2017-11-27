@@ -30,6 +30,7 @@ public class Gui {
 	private String spampath;
 	private Object [][] allrules;
 	private JTable tabela1;
+	private JTable tabela2;
 	private String [] colums = {"Regra", "Peso"};
 	
 	
@@ -144,7 +145,7 @@ public class Gui {
 	 JButton save = new JButton("Guardar");
 	 save.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Functions.save(tabela1);
+				Functions.save(tabela1,0);
 			}
 		});
 	 
@@ -186,7 +187,7 @@ public class Gui {
 		 JButton save1 = new JButton("Guardar");
 		 save1.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-//					Functions.save()
+					Functions.save(tabela2,1);
 				}
 			});
 		 
@@ -197,7 +198,7 @@ public class Gui {
 		 resulauto.setText("FP:"+System.lineSeparator()+"FN:"+System.lineSeparator()+"                    ");
 		 
 		 Object [][] allrules1 = Functions.getRules("rules.cf");
-		 JTable tabela2 = new JTable(allrules1,colums);
+		 tabela2 = new JTable(allrules1,colums);
 		 
 		 extra1.add(new JLabel("Configuração Automática"));
 		 extra1.add(runauto);

@@ -25,7 +25,7 @@ public class Functions {
 				rules[i][0] = line2[0];
 				if (line2.length > 1) {
 					rules[i][1] = line2[1];
-				}else{
+				} else {
 					rules[i][1] = 0;
 				}
 				i++;
@@ -40,10 +40,15 @@ public class Functions {
 	}
 
 	// Função para guardar os valores das regras em um ficheiro.
-	public static void save(JTable tabela1) {
+	public static void save(JTable tabela1, int m) {
 		File f = null;
 		int i = 1;
-		String path = "saved/regras%02d.txt";
+		String path="";
+		if (m == 0) {
+			path = "saved/regras_manual%02d.txt";
+		} else {
+			path = "saved/regras_automatica%02d.txt";
+		}
 		boolean n = true;
 		while (n) {
 			f = new File(String.format(path, i));
@@ -52,15 +57,14 @@ public class Functions {
 			}
 			i++;
 		}
-		
+
 		try {
 			PrintWriter print = new PrintWriter(String.format(path, i));
 			for (int j = 0; j < tabela1.getRowCount(); j++) {
-				System.out.println(j);
 				if (tabela1.getValueAt(j, 1).equals(0)) {
 					print.println((String) tabela1.getValueAt(j, 0));
 				} else {
-					print.println((String) tabela1.getValueAt(j, 0) + " " + (int) tabela1.getValueAt(j, 1));
+					print.println((String) tabela1.getValueAt(j, 0) + " " + (String) tabela1.getValueAt(j, 1));
 				}
 			}
 			print.close();
