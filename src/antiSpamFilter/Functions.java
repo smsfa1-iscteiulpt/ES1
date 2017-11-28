@@ -66,6 +66,7 @@ public class Functions {
 					print.println((String) tabela1.getValueAt(j, 0));
 				} else {
 					print.println((String) tabela1.getValueAt(j, 0) + " " + (String) tabela1.getValueAt(j, 1));
+				
 				}
 			}
 			print.close();
