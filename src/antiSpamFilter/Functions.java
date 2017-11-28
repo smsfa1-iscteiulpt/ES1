@@ -56,6 +56,7 @@ public class Functions {
 			if (!f.exists()) {
 				break;
 			}
+			
 			i++;
 		}
 		//escrever as regras e pesos fornecidos em um ficheiro
