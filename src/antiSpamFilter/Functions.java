@@ -44,6 +44,7 @@ public class Functions {
 		File f = null;
 		int i = 1;
 		String path="";
+		//garantir a criação de ficheiros com nomes sequenciais
 		if (m == 0) {
 			path = "saved/regras_manual%02d.txt";
 		} else {
@@ -57,7 +58,7 @@ public class Functions {
 			}
 			i++;
 		}
-
+		//escrever as regras e pesos fornecidos em um ficheiro
 		try {
 			PrintWriter print = new PrintWriter(String.format(path, i));
 			for (int j = 0; j < tabela1.getRowCount(); j++) {
