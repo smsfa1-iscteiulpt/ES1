@@ -72,6 +72,7 @@ public class Functions {
 		}
 	}
 	
+	
 	public static int Fn(Object[][] rules, String ham){
 		Scanner scanner;
 		int score = 0;

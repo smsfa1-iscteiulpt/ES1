@@ -150,6 +150,7 @@ public class Gui extends AbstractTableModel {
 	 JPanel extra = new JPanel();
 	 extra.setLayout(new GridLayout(3,0));
 	 
+	 
 	 //painel principal
 	 manual = new JPanel();
 	 manual.setLayout(new FlowLayout());
