@@ -1,10 +1,7 @@
 package antiSpamFilter;
 
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
@@ -73,5 +70,61 @@ public class Functions {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public static int Fn(Object[][] rules, String ham){
+		Scanner scanner;
+		int score = 0;
+		int fn = 0;
+		try {
+			scanner = new Scanner(new File(ham));
+			while (scanner.hasNext()) {
+				String line = scanner.nextLine();
+				String[] line2 = line.split("	");
+				for(int i=1;i<line2.length;i++){
+					for(int j=0;j<rules.length;j++){
+						if(rules[j][0].equals(line2[i])){
+							score+=Integer.valueOf((String) rules[j][1]);
+						}
+					}
+				}
+				if(score>5){
+					fn+=1;
+				}
+				score=0;
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			System.exit(0);
+		}
+		return fn;
+	}
+	
+	public static int Fp(Object[][] rules, String spam){
+		Scanner scanner;
+		int score = 0;
+		int fp = 0;
+		try {
+			scanner = new Scanner(new File(spam));
+			while (scanner.hasNext()) {
+				String line = scanner.nextLine();
+				String[] line2 = line.split("	");
+				for(int i=1;i<line2.length;i++){
+					for(int j=0;j<rules.length;j++){
+						if(rules[j][0].equals(line2[i])){
+							score+=Integer.valueOf((String) rules[j][1]);
+						}
+					}
+				}
+				if(score<5){
+					fp+=1;
+				}
+				score=0;
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			System.exit(0);
+		}
+		return fp;
 	}
 }

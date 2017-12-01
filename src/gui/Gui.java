@@ -26,8 +26,8 @@ import antiSpamFilter.Functions;
 public class Gui extends AbstractTableModel {
 
 	private JFrame frame;
-	private int WindowX = 1000;
-	private int WindowY = 1000;
+	private int WindowX = 900;
+	private int WindowY = 900;
 	private String rulespath;
 	private String hampath;
 	private String spampath;
@@ -110,7 +110,6 @@ public class Gui extends AbstractTableModel {
 				if(regras.getText().equals("")||spam1.getText().equals("")||ham1.getText().equals("")){
 					JOptionPane.showMessageDialog(frame, "Tem de preencher todas as opções");
 				}else{
-					System.out.println(tabela1.getValueAt(1, 1));
 					rulespath=regras.getText();
 					hampath=ham1.getText();
 					spampath=spam1.getText();
@@ -154,31 +153,13 @@ public class Gui extends AbstractTableModel {
 	 //painel principal
 	 manual = new JPanel();
 	 manual.setLayout(new FlowLayout());
-	
-	 
-	 //botão para testar a configuração
-	 JButton runmanual = new JButton("Testar");
-	 runmanual.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-			}
-		});
-	 
-	 
-	 //Botão para guardar a configuração
-	 JButton save = new JButton("Guardar");
-	 save.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Functions.save(tabela1,0);
-			}
-		});
 	 
 	 //text area para mostrar os resultados dos testes
 	 JTextArea resulman = new JTextArea();
 	 resulman.setSize(400, 200);
 	 resulman.setEditable(false);
 	 resulman.setFont(resulman.getFont().deriveFont(24f));
-	 resulman.setText("FP:"+System.lineSeparator()+"FN:"+System.lineSeparator()+"                    ");
+	 resulman.setText("FP: 0"+System.lineSeparator()+"FN: 0"+System.lineSeparator()+"                    ");
 	 
 	 allrules = Functions.getRules("rules.cf");
 	 
@@ -195,6 +176,28 @@ public class Gui extends AbstractTableModel {
 	 };
 	 tabela1 = new JTable(model);
 	 scroll = new JScrollPane(tabela1);
+	 
+	 
+	//botão para testar a configuração
+		 JButton runmanual = new JButton("Testar");
+		 runmanual.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					if(!hampath.equals("")){
+						int fn=Functions.Fn(allrules, hampath);
+						resulman.setText("FP: 0"+System.lineSeparator()+"FN:"+fn+System.lineSeparator()+"                    ");
+						
+					}
+				}
+			});
+		 
+		 
+		 //Botão para guardar a configuração
+		 JButton save = new JButton("Guardar");
+		 save.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					Functions.save(tabela1,0);
+				}
+			});
 	 
 	 extra.add(new JLabel("Configuração Manual"));
 	 extra.add(runmanual);
@@ -236,7 +239,7 @@ public class Gui extends AbstractTableModel {
 		 resulauto.setSize(400, 200);
 		 resulauto.setEditable(false);
 		 resulauto.setFont(resulman.getFont().deriveFont(24f));
-		 resulauto.setText("FP:"+System.lineSeparator()+"FN:"+System.lineSeparator()+"                    ");
+		 resulauto.setText("FP: 0"+System.lineSeparator()+"FN: 0"+System.lineSeparator()+"                    ");
 		 
 		 
 		 //tabela que mostra as regras, e os pesos automaticamente gerados
