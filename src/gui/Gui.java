@@ -188,6 +188,11 @@ public class Gui extends AbstractTableModel {
 						resulman.setText("FP: 0"+System.lineSeparator()+"FN:"+fn+System.lineSeparator()+"                    ");
 						
 					}
+					if(!spampath.equals("")){
+						int fp=Functions.Fp(allrules, spampath);
+						resulman.setText("FP:"+fp+System.lineSeparator()+"                    "+"FN: 0"+System.lineSeparator());
+						
+					}
 				}
 			});
 		 
