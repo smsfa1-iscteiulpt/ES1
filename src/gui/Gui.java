@@ -183,16 +183,11 @@ public class Gui extends AbstractTableModel {
 		 JButton runmanual = new JButton("Testar");
 		 runmanual.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					if(!hampath.equals("")){
+					
 						int fn=Functions.Fn(allrules, hampath);
-						resulman.setText("FP: 0"+System.lineSeparator()+"FN:"+fn+System.lineSeparator()+"                    ");
-						
-					}
-					if(!spampath.equals("")){
 						int fp=Functions.Fp(allrules, spampath);
-						resulman.setText("FP:"+fp+System.lineSeparator()+"                    "+"FN: 0"+System.lineSeparator());
+						resulman.setText("FP:"+fp+System.lineSeparator()+"FN:"+fn+System.lineSeparator()+"                    ");
 						
-					}
 				}
 			});
 		 

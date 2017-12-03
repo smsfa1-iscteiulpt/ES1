@@ -117,7 +117,7 @@ public class Functions {
 						}
 					}
 				}
-				if(score<5){
+				if(score<=5){
 					fp+=1;
 				}
 				score=0;
