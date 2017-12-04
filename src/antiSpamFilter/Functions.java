@@ -8,7 +8,7 @@ import java.util.Scanner;
 import javax.swing.JTable;
 
 /**
- * Functions is the class that contains the fucntions that allow the aplication to get the rules,
+ * Functions is the class that contains the functions that allow the application to get the rules,
  * that are used to see if a message is spam or ham or if its is false positive or false negative, to have their weights altered, to save 
  * that new alteration, and to count how many false positives and false negatives are in the spam.log and ham.log.
  *
@@ -20,7 +20,7 @@ import javax.swing.JTable;
 public class Functions {
 
 	/**
-	 * Function that obtains the rules writen in a file to an array.
+	 * Function that obtains the rules written in a file to an array.
 	 * 
 	 * @param path is the directory of the file
 	 * @return rules that is an array with the name of the rules and it's weight
