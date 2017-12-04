@@ -22,6 +22,13 @@ import javax.swing.table.DefaultTableModel;
 
 import antiSpamFilter.Functions;
 
+/**
+ * GUI is the class that creates the application interface
+ *
+ * @author Nuno Fialho EIC1 72910
+ * @author Sandro Ferreira EIC1 72911
+ * @author Duarte Pinto EIC1 73117
+ */
 
 public class Gui extends AbstractTableModel {
 
@@ -69,7 +76,7 @@ public class Gui extends AbstractTableModel {
 	*/
 	private void addFrameContent() {
 		
-	//Criar o Painel de Configuração
+	//Creates the Configuration Panel 
 	 JPanel config = new JPanel();
 	 config.setLayout(new GridLayout(4,2, 10, 10));
 	 config.setBorder(new EmptyBorder(2, 0, 2, 100));
@@ -81,7 +88,7 @@ public class Gui extends AbstractTableModel {
 	 JLabel spam = new JLabel("spam.log");
 	 
 	 
-	 //Text areas para inserir o path para os ficheiros
+	 //Text areas to insert the path to open the files
 	 JTextArea regras = new JTextArea();
 	 regras.setFont(regras.getFont().deriveFont(16f));
 	 JTextArea ham1 = new JTextArea();
@@ -89,7 +96,7 @@ public class Gui extends AbstractTableModel {
 	 JTextArea spam1 = new JTextArea();
 	 spam1.setFont(spam1.getFont().deriveFont(16f));
 	 
-	 //botão que apaga os paths
+	 //button that deletes the paths
 	 JButton reset = new JButton("Apagar");
 	 
 	 reset.addActionListener(new ActionListener() {
@@ -102,7 +109,7 @@ public class Gui extends AbstractTableModel {
 		});
 	 
 	 
-	 //botão para confirmar os paths
+	 //button to confirm the paths
 	 JButton confirm = new JButton("Confirmar");
 	 
 	 confirm.addActionListener(new ActionListener() {
@@ -126,7 +133,7 @@ public class Gui extends AbstractTableModel {
 	 
 	 
 	 
-	 //adicionar os componentes ao painel
+	 //add the components to the panel 
 	 config.add(rules);
 	 config.add(regras);
 	 config.add(spam);
@@ -138,24 +145,24 @@ public class Gui extends AbstractTableModel {
 	 
 	 frame.add(config,BorderLayout.NORTH);
 	 
-	 //criar o painel que junta os métodos de criação de configuração
-	 
+	 //create the panel that joins the creation methods of the configuration
+
 	 JPanel join = new JPanel();
 	 join.setLayout(new GridLayout(2,0));
 	 
-	 //criar o painel de introdução manual
+	 //creates the panel of the manual introduction
 	 
 	 
-	 //Painel extra para garantir a posição dos botões
+	 //Extra panel to ensure the button position
 	 JPanel extra = new JPanel();
 	 extra.setLayout(new GridLayout(3,0));
 	 
 	 
-	 //painel principal
+	 //main panel
 	 manual = new JPanel();
 	 manual.setLayout(new FlowLayout());
 	 
-	 //text area para mostrar os resultados dos testes
+	 //text area that shows the test results
 	 JTextArea resulman = new JTextArea();
 	 resulman.setSize(400, 200);
 	 resulman.setEditable(false);
@@ -164,7 +171,7 @@ public class Gui extends AbstractTableModel {
 	 
 	 allrules = Functions.getRules("rules.cf");
 	 
-	 //tabela com as regras e os pesos
+	 //table with the rules and it's weight
 	 model = new DefaultTableModel(allrules,colums){
 		 public boolean isCellEditable(int row, int col) {
 		        if (col== 1) { //columnIndex: the column you want to make it editable
@@ -179,7 +186,7 @@ public class Gui extends AbstractTableModel {
 	 scroll = new JScrollPane(tabela1);
 	 
 	 
-	//botão para testar a configuração
+	//button to test the configuration 
 		 JButton runmanual = new JButton("Testar");
 		 runmanual.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
@@ -192,7 +199,7 @@ public class Gui extends AbstractTableModel {
 			});
 		 
 		 
-		 //Botão para guardar a configuração
+		 //Button to save the configuration
 		 JButton save = new JButton("Guardar");
 		 save.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
@@ -207,18 +214,19 @@ public class Gui extends AbstractTableModel {
 	 manual.add(resulman);
 	 manual.add(scroll);
 	 
-	 //criar o painel para introdução automática
 	 
-	 	//Painel extra para garantir a posição dos botões
+	 //create the panel for automatic introduction
+	 
+	 	//Extra panel to ensure the buttons position
 		 JPanel extra1 = new JPanel();
 		 extra1.setLayout(new GridLayout(3,0));
 		 
-		 //painel principal
+		 //main panel
 		 JPanel auto = new JPanel();
 		 auto.setLayout(new FlowLayout());
 		
 		 
-		 //botão para gerar configurações automaticamente
+		 //button to generate automatic configuration
 		 JButton runauto = new JButton("Gerar Configuração");
 		 runauto.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
@@ -226,7 +234,7 @@ public class Gui extends AbstractTableModel {
 				}
 			});
 		 
-		 //botão para gerar a configuração gerada
+		 //button to generate the generated configuration
 		 JButton save1 = new JButton("Guardar");
 		 save1.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
@@ -235,7 +243,7 @@ public class Gui extends AbstractTableModel {
 			});
 		 
 		 
-		 //text area para mostrar os resultados dos testes
+		 //text area that shows the test results
 		 JTextArea resulauto = new JTextArea();
 		 resulauto.setSize(400, 200);
 		 resulauto.setEditable(false);
@@ -243,7 +251,7 @@ public class Gui extends AbstractTableModel {
 		 resulauto.setText("FP: 0"+System.lineSeparator()+"FN: 0"+System.lineSeparator()+"                    ");
 		 
 		 
-		 //tabela que mostra as regras, e os pesos automaticamente gerados
+		 //table that shows the rules and it's weight automatically generated
 		 Object [][] allrules1 = Functions.getRules("rules.cf");
 		 
 		 model1 = new DefaultTableModel(allrules,colums){
