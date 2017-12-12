@@ -25,21 +25,24 @@ public class Functions {
 	 * @param path is the directory of the file
 	 * @return rules that is an array with the name of the rules and it's weight
 	 */
-	public static Object[][] getRules(String path) {
-		Object[][] rules = new Object[335][2];
+	public static RP[] getRules(String path) {
+		RP[] rules = new RP[335];
 		int i = 0;
 		Scanner scanner;
 		try {
 			scanner = new Scanner(new File(path));
+			String temp="";
+			int temp1;
 			while (scanner.hasNext()) {
 				String line = scanner.nextLine();
 				String[] line2 = line.split(" ");
-				rules[i][0] = line2[0];
+				temp = line2[0];
 				if (line2.length > 1) {
-					rules[i][1] = line2[1];
+					temp1 = Integer.valueOf(line2[1]);
 				} else {
-					rules[i][1] = 0;
+					temp1 = 0;
 				}
+				rules[i]=new RP(temp,temp1);
 				i++;
 			}
 		} catch (FileNotFoundException e) {
@@ -99,7 +102,7 @@ public class Functions {
 	 * @param ham is the message that is being tested to see if it is false negative
 	 * @return the number of false negatives messages are in the ham.log file
 	 */
-	public static int Fn(Object[][] rules, String spam){
+	public static int Fn(RP[] rules, String spam){
 		Scanner scanner;
 		int score = 0;
 		int fn = 0;
@@ -110,8 +113,8 @@ public class Functions {
 				String[] line2 = line.split("	");
 				for(int i=1;i<line2.length;i++){
 					for(int j=0;j<rules.length;j++){
-						if(rules[j][0].equals(line2[i])){
-							score+=Integer.valueOf((String) rules[j][1]);
+						if(rules[j].getRegra().equals(line2[i])){
+							score+=rules[j].getPeso();
 						}
 					}
 				}
@@ -134,7 +137,7 @@ public class Functions {
 	 * @param spam is the message that is being tested to see if it is false positive
 	 * @return the number of false positives messages are in the spam.log file
 	 */
-	public static int Fp(Object[][] rules, String ham){
+	public static int Fp(RP[] rules, String ham){
 		Scanner scanner;
 		int score = 0;
 		int fp = 0;
@@ -145,8 +148,8 @@ public class Functions {
 				String[] line2 = line.split("	");
 				for(int i=1;i<line2.length;i++){
 					for(int j=0;j<rules.length;j++){
-						if(rules[j][0].equals(line2[i])){
-							score+=Integer.valueOf((String) rules[j][1]);
+						if(rules[j].getRegra().equals(line2[i])){
+							score+=rules[j].getPeso();
 						}
 					}
 				}
@@ -160,5 +163,14 @@ public class Functions {
 			System.exit(0);
 		}
 		return fp;
+	}
+	
+	public static Object[][] getVector(RP[] x){
+		Object[][] y= new Object[x.length][2];
+		for(int i=0;i<x.length;i++){
+			y[i][0]=x[i].getRegra();
+			y[i][1]=x[i].getPeso();
+		}	
+		return y;
 	}
 }

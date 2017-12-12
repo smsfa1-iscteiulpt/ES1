@@ -6,6 +6,7 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Vector;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -36,7 +37,7 @@ public class Gui extends AbstractTableModel {
 	private String rulespath;
 	private String hampath;
 	private String spampath;
-	private Object [][] allrules;
+	private RP[] allrules;
 	private JTable tabela1;
 	private JTable tabela2;
 	private String [] colums = {"Regra", "Peso"};
@@ -121,7 +122,7 @@ public class Gui extends AbstractTableModel {
 					allrules = Functions.getRules(rulespath);
 					((DefaultTableModel) tabela1.getModel()).getDataVector().removeAllElements();
 					for(int i =0;i<allrules.length;i++){
-						((DefaultTableModel) tabela1.getModel()).insertRow(tabela1.getRowCount(),(Object[])allrules[i]);
+						((DefaultTableModel) tabela1.getModel()).insertRow(tabela1.getRowCount(),(allrules[i].getVector()));
 					}
 					scroll.repaint();
 					frame.repaint();
@@ -170,7 +171,7 @@ public class Gui extends AbstractTableModel {
 	 allrules = Functions.getRules("rules.cf");
 	 
 	 //table with the rules and it's weight
-	 model = new DefaultTableModel(allrules,colums){
+	 model = new DefaultTableModel(Functions.getVector(allrules),colums){
 		 public boolean isCellEditable(int row, int col) {
 		        if (col== 1) { //columnIndex: the column you want to make it editable
 		            return true;
@@ -250,9 +251,9 @@ public class Gui extends AbstractTableModel {
 		 
 		 
 		 //table that shows the rules and it's weight automatically generated
-		 Object [][] allrules1 = Functions.getRules("rules.cf");
+		 RP[] allrules1 = Functions.getRules("rules.cf");
 		 
-		 model1 = new DefaultTableModel(allrules,colums){
+		 model1 = new DefaultTableModel(Functions.getVector(allrules),colums){
 			 public boolean isCellEditable(int row, int col) {
 			            return false;
 			    }
