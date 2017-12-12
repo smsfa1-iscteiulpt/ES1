@@ -99,12 +99,12 @@ public class Functions {
 	 * @param ham is the message that is being tested to see if it is false negative
 	 * @return the number of false negatives messages are in the ham.log file
 	 */
-	public static int Fn(Object[][] rules, String ham){
+	public static int Fn(Object[][] rules, String spam){
 		Scanner scanner;
 		int score = 0;
 		int fn = 0;
 		try {
-			scanner = new Scanner(new File(ham));
+			scanner = new Scanner(new File(spam));
 			while (scanner.hasNext()) {
 				String line = scanner.nextLine();
 				String[] line2 = line.split("	");
@@ -115,7 +115,7 @@ public class Functions {
 						}
 					}
 				}
-				if(score>5){
+				if(score<=5){
 					fn+=1;
 				}
 				score=0;
@@ -134,12 +134,12 @@ public class Functions {
 	 * @param spam is the message that is being tested to see if it is false positive
 	 * @return the number of false positives messages are in the spam.log file
 	 */
-	public static int Fp(Object[][] rules, String spam){
+	public static int Fp(Object[][] rules, String ham){
 		Scanner scanner;
 		int score = 0;
 		int fp = 0;
 		try {
-			scanner = new Scanner(new File(spam));
+			scanner = new Scanner(new File(ham));
 			while (scanner.hasNext()) {
 				String line = scanner.nextLine();
 				String[] line2 = line.split("	");
@@ -150,7 +150,7 @@ public class Functions {
 						}
 					}
 				}
-				if(score<=5){
+				if(score>5){
 					fp+=1;
 				}
 				score=0;

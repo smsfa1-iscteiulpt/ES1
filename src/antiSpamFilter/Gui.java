@@ -1,4 +1,4 @@
-package gui;
+package antiSpamFilter;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -19,8 +19,6 @@ import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
-
-import antiSpamFilter.Functions;
 
 /**
  * GUI is the class that creates the application interface
@@ -191,8 +189,8 @@ public class Gui extends AbstractTableModel {
 		 runmanual.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					
-						int fn=Functions.Fn(allrules, hampath);
-						int fp=Functions.Fp(allrules, spampath);
+						int fn=Functions.Fp(allrules, hampath);
+						int fp=Functions.Fn(allrules, spampath);
 						resulman.setText("FP:"+fp+System.lineSeparator()+"FN:"+fn+System.lineSeparator()+"                    ");
 						
 				}
