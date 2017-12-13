@@ -24,11 +24,11 @@ import java.util.List;
 public class AntiSpamFilterAutomaticConfiguration {
   private static final int INDEPENDENT_RUNS = 5 ;
 
-  public static void automatic() throws IOException {
+  public static void automatic(String rulesPath, String hamPath, String spamPath) throws IOException {
     String experimentBaseDirectory = "experimentBaseDirectory";
 
     List<ExperimentProblem<DoubleSolution>> problemList = new ArrayList<>();
-    problemList.add(new ExperimentProblem<>(new AntiSpamFilterProblem()));
+    problemList.add(new ExperimentProblem<>(new AntiSpamFilterProblem(rulesPath, hamPath, spamPath)));
 
     List<ExperimentAlgorithm<DoubleSolution, List<DoubleSolution>>> algorithmList =
             configureAlgorithmList(problemList);
@@ -63,7 +63,7 @@ public class AntiSpamFilterAutomaticConfiguration {
               problemList.get(i).getProblem(),
               new SBXCrossover(1.0, 5),
               new PolynomialMutation(1.0 / problemList.get(i).getProblem().getNumberOfVariables(), 10.0))
-              .setMaxEvaluations(25000)
+              .setMaxEvaluations(250)
               .setPopulationSize(100)
               .build();
       algorithms.add(new ExperimentAlgorithm<>(algorithm, "NSGAII", problemList.get(i).getTag()));

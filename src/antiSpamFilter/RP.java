@@ -2,9 +2,9 @@ package antiSpamFilter;
 
 public class RP {
 	private String regra;
-	private int peso;
+	private double peso;
 	
-	public RP(String regra, int peso){
+	public RP(String regra, double peso){
 		this.regra=regra;
 		this.peso=peso;
 	}
@@ -13,7 +13,7 @@ public class RP {
 		return this.regra;
 	}
 	
-	public int getPeso(){
+	public double getPeso(){
 		return this.peso;
 	}
 
@@ -21,7 +21,7 @@ public class RP {
 		this.regra=r;
 	}
 	
-	public void setPeso(int p){
+	public void setPeso(double p){
 		this.peso=p;
 	}
 	

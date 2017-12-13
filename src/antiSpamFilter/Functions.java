@@ -1,8 +1,13 @@
 package antiSpamFilter;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 import javax.swing.JTable;
@@ -53,6 +58,75 @@ public class Functions {
 		return rules;
 
 	}
+	
+	/**
+	 * read the automatic results
+	 * 
+	 * @return
+	 */
+	
+	public static String[] readAutomatic() {
+	
+		String[] rules = new String[3];
+		
+		Double media = 0.0;
+		int control = 0;
+		ArrayList<Integer> fp = new ArrayList<Integer>();
+		ArrayList<Integer> fn = new ArrayList<Integer>();
+		
+		String line = "";
+		try {
+			BufferedReader in = new BufferedReader(new FileReader("experimentBaseDirectory/referenceFronts/AntiSpamFilterProblem.rf"));
+				while ((line = in.readLine()) != null) {
+				    String fx[] = line.split(" ");
+				    fp.add((int) Double.parseDouble(fx[0]));
+				    fn.add((int) Double.parseDouble(fx[1]));
+					}
+				in.close();
+		} catch (IOException e) {return null;}
+		
+		Double min = (double) (fp.get(0) + fn.get(0));
+		for(int i = 0; i < fp.size();i++){
+			media = (double) (fp.get(i) + fn.get(i));
+			if(media < min){
+				min = media;
+				control = i;
+			}
+			
+		}
+		rules[0] = fp.get(control).toString();
+		rules[1] = fn.get(control).toString();
+		rules[2] = "" + control;
+		return rules;
+		
+	}
+	
+	
+	public static RP[] readConfig(int index) {
+		
+		RP[] rules = getRules("rules.cf");
+		int i = 0;
+		String line = "";
+		try {
+			BufferedReader in = new BufferedReader(new FileReader("experimentBaseDirectory/referenceFronts/AntiSpamFilterProblem.rs"));
+				while ((line = in.readLine()) != null) {
+					if(i == index){
+				    String fx[] = line.split(" ");
+				    	for(int j = 0; j < fx.length;j++){
+				    		rules[j].setPeso(Double.valueOf(fx[j]));
+				    	}
+					}
+					i++;
+					}
+				in.close();
+		} catch (IOException e) {return null;}
+
+	
+		
+		return rules;
+		
+	}
+	
 	
 	/**
 	 * Function that saves the values of the rules in a file.

@@ -6,6 +6,7 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.Vector;
 
 import javax.swing.JButton;
@@ -189,7 +190,13 @@ public class Gui extends AbstractTableModel {
 		 JButton runmanual = new JButton("Testar");
 		 runmanual.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					
+					Vector tabela =((DefaultTableModel) tabela1.getModel()).getDataVector();
+					for(int i = 0; i < tabela.size();i++){
+					Vector linha = (Vector) tabela.elementAt(i);
+					allrules[i].setRegra(linha.elementAt(0).toString());
+					allrules[i].setPeso (Double.parseDouble(linha.elementAt(1).toString()));
+						
+					}
 						int fn=Functions.Fp(allrules, hampath);
 						int fp=Functions.Fn(allrules, spampath);
 						resulman.setText("FP:"+fp+System.lineSeparator()+"FN:"+fn+System.lineSeparator()+"                    ");
@@ -224,12 +231,26 @@ public class Gui extends AbstractTableModel {
 		 JPanel auto = new JPanel();
 		 auto.setLayout(new FlowLayout());
 		
+		 JTextArea resulauto = new JTextArea();
 		 
 		 //button to generate automatic configuration
 		 JButton runauto = new JButton("Gerar Configuração");
 		 runauto.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					
+					try {
+						AntiSpamFilterAutomaticConfiguration.automatic(rulespath, hampath, spampath);
+						String[] fx = Functions.readAutomatic();
+						resulauto.setText("FP:"+fx[0]+System.lineSeparator()+"FN:"+fx[1]+System.lineSeparator()+"                    ");
+						RP[] regras = Functions.readConfig(Integer.valueOf(fx[2]));
+						((DefaultTableModel) tabela2.getModel()).getDataVector().removeAllElements();
+						for(int i =0;i<regras.length;i++){
+							((DefaultTableModel) tabela2.getModel()).insertRow(tabela2.getRowCount(),(regras[i].getVector()));
+						}
+
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 				}
 			});
 		 
@@ -243,7 +264,7 @@ public class Gui extends AbstractTableModel {
 		 
 		 
 		 //text area that shows the test results
-		 JTextArea resulauto = new JTextArea();
+		 
 		 resulauto.setSize(400, 200);
 		 resulauto.setEditable(false);
 		 resulauto.setFont(resulman.getFont().deriveFont(24f));
