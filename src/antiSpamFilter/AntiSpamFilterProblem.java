@@ -6,11 +6,17 @@ import java.util.List;
 import org.uma.jmetal.problem.impl.AbstractDoubleProblem;
 import org.uma.jmetal.solution.DoubleSolution;
 
-public class AntiSpamFilterProblem extends AbstractDoubleProblem {
+/**
+ * AntiSpanFilterProblem is the class that will allow to count how many false positives are in the spam.log file 
+ * and false negatives are in the ham.log file
+ * 
+ * @author Nuno Fialho EIC1 72910
+ * @author Sandro Ferreira EIC1 72911
+ * @author Duarte Pinto EIC1 73117
+ */
 
-	/**
-	 * 
-	 */
+public class AntiSpamFilterProblem extends AbstractDoubleProblem {
+	
 	private static final long serialVersionUID = 1L;
 	private String rulesPath, hamPath, spamPath;
 	
@@ -38,7 +44,11 @@ public class AntiSpamFilterProblem extends AbstractDoubleProblem {
 	    setLowerLimit(lowerLimit);
 	    setUpperLimit(upperLimit);
 	  }
-
+	  
+	  /**
+	   * Function that counts how many false positives are in the spam.log file
+	   * and how many false negatives are in ham.log file
+	   */
 	  public void evaluate(DoubleSolution solution){
 		RP[] rules = Functions.getRules("rules.cf");
 	    double[] fx = new double[getNumberOfObjectives()];

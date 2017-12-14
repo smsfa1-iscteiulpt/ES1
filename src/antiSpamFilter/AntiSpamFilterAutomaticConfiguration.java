@@ -21,9 +21,27 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * AntiSpamFilterAutomaticConfiguration is the class that allows to generate automatic weights to the rules according to the results of the
+ * score of how many false positives are in the spam.log file and how many false negatives are in the ham.log file.
+ * We need to specify where are the rules (rules.cf).
+ * 
+ *
+ * @author Nuno Fialho EIC1 72910
+ * @author Sandro Ferreira EIC1 72911
+ * @author Duarte Pinto EIC1 73117
+ */
+
 public class AntiSpamFilterAutomaticConfiguration {
   private static final int INDEPENDENT_RUNS = 5 ;
-
+  
+  /**
+   * Function that generates automatic weights to the rules depending on the results of false positives and false negatives 
+   * @param rulesPath is the directory of the rules file 
+   * @param hamPathis the directory of the ham file 
+   * @param spamPath is the directory of the spam file 
+   * @throws IOException
+   */
   public static void automatic(String rulesPath, String hamPath, String spamPath) throws IOException {
     String experimentBaseDirectory = "experimentBaseDirectory";
 
@@ -53,7 +71,12 @@ public class AntiSpamFilterAutomaticConfiguration {
     new GenerateBoxplotsWithR<>(experiment).setRows(1).setColumns(1).run() ;
     
   }
-
+  
+  /**
+   * Function that creates an algorithm to generate automatic weights to the rules.
+   * @param problemList 
+   * @return
+   */
   static List<ExperimentAlgorithm<DoubleSolution, List<DoubleSolution>>> configureAlgorithmList(
           List<ExperimentProblem<DoubleSolution>> problemList) {
     List<ExperimentAlgorithm<DoubleSolution, List<DoubleSolution>>> algorithms = new ArrayList<>();

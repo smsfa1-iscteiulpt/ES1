@@ -297,12 +297,12 @@ public class Gui extends AbstractTableModel {
 	 frame.add(join, BorderLayout.CENTER);
 	}
 
-
+	
 	public String getRulespath() {
 		return rulespath;
 	}
 
-
+	
 	public String getHampath() {
 		return hampath;
 	}

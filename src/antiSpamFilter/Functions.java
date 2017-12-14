@@ -60,9 +60,9 @@ public class Functions {
 	}
 	
 	/**
-	 * read the automatic results
+	 * Function that read the automatic results
 	 * 
-	 * @return
+	 * @return the rules that were read
 	 */
 	
 	public static String[] readAutomatic() {
@@ -101,7 +101,11 @@ public class Functions {
 		
 	}
 	
-	
+	/**
+	 * Function that reads a specific rule thats in the rules.cf file
+	 * @param index of the rule that we want to read
+	 * @return of the specific rule that we read (Rule + Weight)
+	 */
 	public static RP[] readConfig(int index) {
 		
 		RP[] rules = getRules("rules.cf");
