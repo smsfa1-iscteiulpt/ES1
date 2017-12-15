@@ -20,14 +20,19 @@ public class AntiSpamFilterProblem extends AbstractDoubleProblem {
 	private static final long serialVersionUID = 1L;
 	private String rulesPath, hamPath, spamPath;
 	
-	
+	/*
+	 * Creating an AntiSpamFilterProblem
+	 */
 	  public AntiSpamFilterProblem(String rulesPath, String hamPath, String spamPath) {
 	    this(335);
 	    this.rulesPath = rulesPath;
 	    this.hamPath = hamPath;
 	    this.spamPath = spamPath;
 	  }
-
+	  
+	  /**
+	   * Creating an AntiSpamFilterProblem
+	   */
 	  public AntiSpamFilterProblem(Integer numberOfVariables) {
 	    setNumberOfVariables(numberOfVariables);
 	    setNumberOfObjectives(2);
@@ -46,8 +51,8 @@ public class AntiSpamFilterProblem extends AbstractDoubleProblem {
 	  }
 	  
 	  /**
-	   * Function that counts how many false positives are in the spam.log file
-	   * and how many false negatives are in ham.log file
+	   * Function that counts how many false positives are in the ham.log file
+	   * and how many false negatives are in spam.log file
 	   */
 	  public void evaluate(DoubleSolution solution){
 		RP[] rules = Functions.getRules("rules.cf");

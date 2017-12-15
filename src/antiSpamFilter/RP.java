@@ -14,6 +14,9 @@ public class RP {
 	private String regra;
 	private double peso;
 	
+	/**
+	 * Creating a rule and it's weight
+	 */
 	public RP(String regra, double peso){
 		this.regra=regra;
 		this.peso=peso;

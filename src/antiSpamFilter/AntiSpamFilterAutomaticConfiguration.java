@@ -23,7 +23,7 @@ import java.util.List;
 
 /**
  * AntiSpamFilterAutomaticConfiguration is the class that allows to generate automatic weights to the rules according to the results of the
- * score of how many false positives are in the spam.log file and how many false negatives are in the ham.log file.
+ * score of how many false positives are in the ham.log file and how many false negatives are in the spam.log file.
  * We need to specify where are the rules (rules.cf).
  * 
  *
@@ -86,7 +86,7 @@ public class AntiSpamFilterAutomaticConfiguration {
               problemList.get(i).getProblem(),
               new SBXCrossover(1.0, 5),
               new PolynomialMutation(1.0 / problemList.get(i).getProblem().getNumberOfVariables(), 10.0))
-              .setMaxEvaluations(250)
+              .setMaxEvaluations(2500)
               .setPopulationSize(100)
               .build();
       algorithms.add(new ExperimentAlgorithm<>(algorithm, "NSGAII", problemList.get(i).getTag()));

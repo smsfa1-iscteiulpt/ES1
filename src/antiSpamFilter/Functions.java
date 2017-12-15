@@ -102,9 +102,10 @@ public class Functions {
 	}
 	
 	/**
-	 * Function that reads a specific rule thats in the rules.cf file
-	 * @param index of the rule that we want to read
-	 * @return of the specific rule that we read (Rule + Weight)
+	 * Function that reads the weights of the rules created by the jMetal Algorithm 
+	 * 
+	 * @param index of the weight that we want to read
+	 * @return a vector of Regras and Pesos (Rules + Weights)
 	 */
 	public static RP[] readConfig(int index) {
 		
@@ -174,11 +175,11 @@ public class Functions {
 	}
 	
 	/**
-	 * Function that counts the number of false negatives that exist in the ham.log file
+	 * Function that counts the number of false negatives that exist in the spam.log file
 	 * 
 	 * @param rules are the rules to test the messages
-	 * @param ham is the message that is being tested to see if it is false negative
-	 * @return the number of false negatives messages are in the ham.log file
+	 * @param spam is the message that is being tested to see if it is false negative
+	 * @return the number of false negatives messages are in the spam.log file
 	 */
 	public static int Fn(RP[] rules, String spam){
 		Scanner scanner;
@@ -209,11 +210,11 @@ public class Functions {
 	}
 	
 	/**
-	 * Function that counts the number of false positives exist in the spam.log file
+	 * Function that counts the number of false positives exist in the ham.log file
 	 * 
 	 * @param rules are the rules to test the messages
-	 * @param spam is the message that is being tested to see if it is false positive
-	 * @return the number of false positives messages are in the spam.log file
+	 * @param ham is the message that is being tested to see if it is false positive
+	 * @return the number of false positives messages are in the ham.log file
 	 */
 	public static int Fp(RP[] rules, String ham){
 		Scanner scanner;
@@ -243,6 +244,11 @@ public class Functions {
 		return fp;
 	}
 	
+	/**
+	 * Function that separates the rules and it's weights
+	 * @param x is a vector of rules and it's weight (RP)
+	 * @return an matrix with the rules and it´s weight separated
+	 */
 	public static Object[][] getVector(RP[] x){
 		Object[][] y= new Object[x.length][2];
 		for(int i=0;i<x.length;i++){

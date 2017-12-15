@@ -297,36 +297,51 @@ public class Gui extends AbstractTableModel {
 	 frame.add(join, BorderLayout.CENTER);
 	}
 
-	
+	/**
+	 * Function that get the path of the rules file
+	 * @return the path of the rules
+	 */
 	public String getRulespath() {
 		return rulespath;
 	}
 
-	
+	/**
+	 * Function that get the path of the ham file
+	 * @return the path of the rules
+	 */
 	public String getHampath() {
 		return hampath;
 	}
 
-
+	/**
+	 * Function that get the path of the spam file
+	 * @return the path of the spam
+	 */
 	public String getSpampath() {
 		return spampath;
 	}
 
-
+	/**
+	 * 
+	 */
 	@Override
 	public int getColumnCount() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-
+	/**
+	 * 
+	 */
 	@Override
 	public int getRowCount() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-
+	/**
+	 * 
+	 */
 	@Override
 	public Object getValueAt(int arg0, int arg1) {
 		// TODO Auto-generated method stub
