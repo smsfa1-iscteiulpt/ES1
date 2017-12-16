@@ -246,6 +246,7 @@ public class Functions {
 	
 	/**
 	 * Function that separates the rules and it's weights
+	 * 
 	 * @param x is a vector of rules and it's weight (RP)
 	 * @return an matrix with the rules and it´s weight separated
 	 */
