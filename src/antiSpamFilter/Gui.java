@@ -261,6 +261,7 @@ public class Gui extends AbstractTableModel {
 		save1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Functions.save(tabela2,"AntiSpamConfigurationForBalancedProfessionalAndLeisureMailbox\\rules.cf");
+				
 			}
 		});
 
