@@ -46,8 +46,9 @@ public class Gui extends AbstractTableModel {
 	private JScrollPane scroll;
 	private DefaultTableModel model;
 	private DefaultTableModel model1;
-	
-	
+	private JButton runmanual;
+	private JButton runauto;
+	private JButton confirm;
 	
 	/**
 	* Creating the window.
@@ -110,7 +111,7 @@ public class Gui extends AbstractTableModel {
 	 
 	 
 	 //button to confirm the paths
-	 JButton confirm = new JButton("Confirmar");
+	 confirm = new JButton("Confirmar");
 	 
 	 confirm.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -187,7 +188,7 @@ public class Gui extends AbstractTableModel {
 	 
 	 
 	//button to test the configuration 
-		 JButton runmanual = new JButton("Testar");
+		 runmanual = new JButton("Testar");
 		 runmanual.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					Vector tabela =((DefaultTableModel) tabela1.getModel()).getDataVector();
@@ -221,6 +222,7 @@ public class Gui extends AbstractTableModel {
 	 manual.add(scroll);
 	 
 	 
+	 
 	 //create the panel for automatic introduction
 	 
 	 	//Extra panel to ensure the buttons position
@@ -234,7 +236,7 @@ public class Gui extends AbstractTableModel {
 		 JTextArea resulauto = new JTextArea();
 		 
 		 //button to generate automatic configuration
-		 JButton runauto = new JButton("Gerar Configuração");
+		 runauto = new JButton("Gerar Configuração");
 		 runauto.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					try {
@@ -347,8 +349,23 @@ public class Gui extends AbstractTableModel {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
+	public JPanel getManual() {
+		return manual;
+	}
 	
+	public JButton getRunManual(){
+		return runmanual;
+	}
 	
+	public JButton getRunAuto(){
+		return runauto;
+	}
+	
+	public JButton getConfirm(){
+		return confirm;
+	}
 	
 }
 
