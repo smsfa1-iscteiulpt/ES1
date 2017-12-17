@@ -116,7 +116,7 @@ public class TestFunctions {
 		
 		Object[][] result = subjects.getVector(subjects.getRules(rulesExample));
 		Object[][] expected = subjects.getVector(subjects.getRules(rules2Example));
-		assertEquals(expected, result);
+		assertArrayEquals(expected, result);
 		
 	}
 	
