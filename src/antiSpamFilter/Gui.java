@@ -206,19 +206,7 @@ public class Gui extends AbstractTableModel {
 		JButton save = new JButton("Guardar");
 		save.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				boolean var = true;
-				while (var) {
-					String path;
-					path = JOptionPane.showInputDialog(frame, "Introduza o caminho para guardar o ficheiro");
-					if (path == null) {
-						var = false;
-					} else {
-						var = Functions.save(tabela1, 0, path);
-						if (var == true) {
-							JOptionPane.showMessageDialog(frame, "O caminho especificado não foi encontrado");
-						}
-					}
-				}
+						Functions.save(tabela1,rulespath);
 			}
 		});
 
@@ -272,19 +260,7 @@ public class Gui extends AbstractTableModel {
 		JButton save1 = new JButton("Guardar");
 		save1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				boolean var = true;
-				while (var) {
-					String path;
-					path = JOptionPane.showInputDialog(frame, "Introduza o caminho para guardar o ficheiro");
-					if (path == null) {
-						var = false;
-					} else {
-						var = Functions.save(tabela2, 0, path);
-						if (var == true) {
-							JOptionPane.showMessageDialog(frame, "O caminho especificado não foi encontrado");
-						}
-					}
-				}
+				Functions.save(tabela2,"AntiSpamConfigurationForBalancedProfessionalAndLeisureMailbox\\rules.cf");
 			}
 		});
 

@@ -139,7 +139,7 @@ public class Functions {
 	 * @param tabela1 is the table where the rules are
 	 * @param m is what defines if we are saving the rules manually or automatically.
 	 */
-	public static boolean save(JTable tabela1, int m, String path) {
+	public static void save(JTable tabela1, String path) {
 		
 		//write the rules and it's weight in a file
 		try {
@@ -152,9 +152,8 @@ public class Functions {
 				}
 			}
 			print.close();
-			return false;
 		} catch (FileNotFoundException e) {
-			return true;
+			e.printStackTrace();
 		}
 	}
 	
