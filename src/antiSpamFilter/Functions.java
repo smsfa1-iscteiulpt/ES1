@@ -139,38 +139,22 @@ public class Functions {
 	 * @param tabela1 is the table where the rules are
 	 * @param m is what defines if we are saving the rules manually or automatically.
 	 */
-	public static void save(JTable tabela1, int m) {
-		File f = null;
-		int i = 1;
-		String path="";
-		//ensure the creation of files with sequential names
-		if (m == 0) {
-			path = "saved/regras_manual%02d.txt";
-		} else {
-			path = "saved/regras_automatica%02d.txt";
-		}
-		boolean n = true;
-		while (n) {
-			f = new File(String.format(path, i));
-			if (!f.exists()) {
-				break;
-			}
-			i++;
-		}
+	public static boolean save(JTable tabela1, int m, String path) {
+		
 		//write the rules and it's weight in a file
 		try {
-			PrintWriter print = new PrintWriter(String.format(path, i));
+			PrintWriter print = new PrintWriter(path);
 			for (int j = 0; j < tabela1.getRowCount(); j++) {
 				if (tabela1.getValueAt(j, 1).equals(0)) {
 					print.println((String) tabela1.getValueAt(j, 0));
 				} else {
-					print.println((String) tabela1.getValueAt(j, 0) + " " + (String) tabela1.getValueAt(j, 1));
-				
+					print.println((String) tabela1.getValueAt(j, 0) + " " + tabela1.getValueAt(j, 1));
 				}
 			}
 			print.close();
+			return false;
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			return true;
 		}
 	}
 	

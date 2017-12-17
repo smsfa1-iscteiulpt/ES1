@@ -41,7 +41,7 @@ public class Gui extends AbstractTableModel {
 	private RP[] allrules;
 	private JTable tabela1;
 	private JTable tabela2;
-	private String [] colums = {"Regra", "Peso"};
+	private String[] colums = { "Regra", "Peso" };
 	private JPanel manual;
 	private JScrollPane scroll;
 	private DefaultTableModel model;
@@ -49,204 +49,215 @@ public class Gui extends AbstractTableModel {
 	private JButton runmanual;
 	private JButton runauto;
 	private JButton confirm;
-	
+
 	/**
-	* Creating the window.
-	*/
-	public Gui(){
+	 * Creating the window.
+	 */
+	public Gui() {
 		frame = new JFrame(" Anti-spam filtering ");
-		
+
 		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
 		frame.setLayout(new BorderLayout());
 
 		addFrameContent();
-		
+
 		frame.setVisible(true);
 
 		frame.pack();
 
 		frame.setSize(new Dimension(WindowX, WindowY));
-		
+
 		frame.setResizable(false);
 	}
 
-	
 	/**
-	* Adding the content to the window.
-	*/
+	 * Adding the content to the window.
+	 */
 	private void addFrameContent() {
-		
-	//Creates the Configuration Panel 
-	 JPanel config = new JPanel();
-	 config.setLayout(new GridLayout(4,2, 10, 10));
-	 config.setBorder(new EmptyBorder(2, 0, 2, 100));
-	 
-	 
-	 //Labels 
-	 JLabel rules = new JLabel("rules.cf");
-	 JLabel ham = new JLabel("ham.log");
-	 JLabel spam = new JLabel("spam.log");
-	 
-	 
-	 //Text areas to insert the path to open the files
-	 JTextArea regras = new JTextArea();
-	 regras.setFont(regras.getFont().deriveFont(16f));
-	 JTextArea ham1 = new JTextArea();
-	 ham1.setFont(ham1.getFont().deriveFont(16f));
-	 JTextArea spam1 = new JTextArea();
-	 spam1.setFont(spam1.getFont().deriveFont(16f));
-	 
-	 //button that deletes the paths
-	 JButton reset = new JButton("Apagar");
-	 
-	 reset.addActionListener(new ActionListener() {
+
+		// Creates the Configuration Panel
+		JPanel config = new JPanel();
+		config.setLayout(new GridLayout(4, 2, 10, 10));
+		config.setBorder(new EmptyBorder(2, 0, 2, 100));
+
+		// Labels
+		JLabel rules = new JLabel("rules.cf");
+		JLabel ham = new JLabel("ham.log");
+		JLabel spam = new JLabel("spam.log");
+
+		// Text areas to insert the path to open the files
+		JTextArea regras = new JTextArea();
+		regras.setFont(regras.getFont().deriveFont(16f));
+		JTextArea ham1 = new JTextArea();
+		ham1.setFont(ham1.getFont().deriveFont(16f));
+		JTextArea spam1 = new JTextArea();
+		spam1.setFont(spam1.getFont().deriveFont(16f));
+
+		// button that deletes the paths
+		JButton reset = new JButton("Apagar");
+
+		reset.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				regras.setText("");
 				ham1.setText("");
 				spam1.setText("");
-				
+
 			}
 		});
-	 
-	 
-	 //button to confirm the paths
-	 confirm = new JButton("Confirmar");
-	 
-	 confirm.addActionListener(new ActionListener() {
+
+		// button to confirm the paths
+		confirm = new JButton("Confirmar");
+
+		confirm.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(regras.getText().equals("")||spam1.getText().equals("")||ham1.getText().equals("")){
+				if (regras.getText().equals("") || spam1.getText().equals("") || ham1.getText().equals("")) {
 					JOptionPane.showMessageDialog(frame, "Tem de preencher todas as opções");
-				}else{
-					rulespath=regras.getText();
-					hampath=ham1.getText();
-					spampath=spam1.getText();
+				} else {
+					rulespath = regras.getText();
+					hampath = ham1.getText();
+					spampath = spam1.getText();
 					allrules = Functions.getRules(rulespath);
 					((DefaultTableModel) tabela1.getModel()).getDataVector().removeAllElements();
-					for(int i =0;i<allrules.length;i++){
-						((DefaultTableModel) tabela1.getModel()).insertRow(tabela1.getRowCount(),(allrules[i].getVector()));
+					for (int i = 0; i < allrules.length; i++) {
+						((DefaultTableModel) tabela1.getModel()).insertRow(tabela1.getRowCount(),
+								(allrules[i].getVector()));
 					}
 					scroll.repaint();
 					frame.repaint();
 				}
 			}
 		});
-	 
-	 
-	 
-	 //add the components to the panel 
-	 config.add(rules);
-	 config.add(regras);
-	 config.add(spam);
-	 config.add(spam1);
-	 config.add(ham);
-	 config.add(ham1);
-	 config.add(reset);
-	 config.add(confirm);
-	 
-	 frame.add(config,BorderLayout.NORTH);
-	 
-	 //create the panel that joins the creation methods of the configuration
 
-	 JPanel join = new JPanel();
-	 join.setLayout(new GridLayout(2,0));
-	 
-	 //creates the panel of the manual introduction
-	 
-	 
-	 //Extra panel to ensure the button position
-	 JPanel extra = new JPanel();
-	 extra.setLayout(new GridLayout(3,0));
-	 
-	 
-	 //main panel
-	 manual = new JPanel();
-	 manual.setLayout(new FlowLayout());
-	 
-	 //text area that shows the test results
-	 JTextArea resulman = new JTextArea();
-	 resulman.setSize(400, 200);
-	 resulman.setEditable(false);
-	 resulman.setFont(resulman.getFont().deriveFont(24f));
-	 resulman.setText("FP: 0"+System.lineSeparator()+"FN: 0"+System.lineSeparator()+"                    ");
-	 
-	 allrules = Functions.getRules("rules.cf");
-	 
-	 //table with the rules and it's weight
-	 model = new DefaultTableModel(Functions.getVector(allrules),colums){
-		 public boolean isCellEditable(int row, int col) {
-		        if (col== 1) { //columnIndex: the column you want to make it editable
-		            return true;
-		        } else {
-		            return false;
-		        }
-		    }
-		 
-	 };
-	 tabela1 = new JTable(model);
-	 scroll = new JScrollPane(tabela1);
-	 
-	 
-	//button to test the configuration 
-		 runmanual = new JButton("Testar");
-		 runmanual.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					Vector tabela =((DefaultTableModel) tabela1.getModel()).getDataVector();
-					for(int i = 0; i < tabela.size();i++){
-					Vector linha = (Vector) tabela.elementAt(i);
-					allrules[i].setRegra(linha.elementAt(0).toString());
-					allrules[i].setPeso (Double.parseDouble(linha.elementAt(1).toString()));
-						
+		// add the components to the panel
+		config.add(rules);
+		config.add(regras);
+		config.add(spam);
+		config.add(spam1);
+		config.add(ham);
+		config.add(ham1);
+		config.add(reset);
+		config.add(confirm);
+
+		frame.add(config, BorderLayout.NORTH);
+
+		// create the panel that joins the creation methods of the configuration
+
+		JPanel join = new JPanel();
+		join.setLayout(new GridLayout(2, 0));
+
+		// creates the panel of the manual introduction
+
+		// Extra panel to ensure the button position
+		JPanel extra = new JPanel();
+		extra.setLayout(new GridLayout(3, 0));
+
+		// main panel
+		manual = new JPanel();
+		manual.setLayout(new FlowLayout());
+
+		// text area that shows the test results
+		JTextArea resulman = new JTextArea();
+		resulman.setSize(400, 200);
+		resulman.setEditable(false);
+		resulman.setFont(resulman.getFont().deriveFont(24f));
+		resulman.setText("FP: 0" + System.lineSeparator() + "FN: 0" + System.lineSeparator() + "                    ");
+
+		allrules = Functions.getRules("rules.cf");
+
+		// table with the rules and it's weight
+		model = new DefaultTableModel(Functions.getVector(allrules), colums) {
+			public boolean isCellEditable(int row, int col) {
+				if (col == 1) { // columnIndex: the column you want to make it
+								// editable
+					return true;
+				} else {
+					return false;
+				}
+			}
+
+		};
+		tabela1 = new JTable(model);
+		scroll = new JScrollPane(tabela1);
+
+		// button to test the configuration
+		runmanual = new JButton("Testar");
+		runmanual.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (regras.getText().equals("") || spam1.getText().equals("") || ham1.getText().equals("")) {
+					JOptionPane.showMessageDialog(frame, "Tem de preencher todas as opções");
+				} else {
+					Vector tabela = ((DefaultTableModel) tabela1.getModel()).getDataVector();
+					for (int i = 0; i < tabela.size(); i++) {
+						Vector linha = (Vector) tabela.elementAt(i);
+						allrules[i].setRegra(linha.elementAt(0).toString());
+						allrules[i].setPeso(Double.parseDouble(linha.elementAt(1).toString()));
+
 					}
-						int fn=Functions.Fp(allrules, hampath);
-						int fp=Functions.Fn(allrules, spampath);
-						resulman.setText("FP:"+fp+System.lineSeparator()+"FN:"+fn+System.lineSeparator()+"                    ");
-						
+					int fn = Functions.Fp(allrules, hampath);
+					int fp = Functions.Fn(allrules, spampath);
+					resulman.setText("FP:" + fp + System.lineSeparator() + "FN:" + fn + System.lineSeparator()
+							+ "                    ");
 				}
-			});
-		 
-		 
-		 //Button to save the configuration
-		 JButton save = new JButton("Guardar");
-		 save.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					Functions.save(tabela1,0);
+			}
+		});
+
+		// Button to save the manual configuration
+		JButton save = new JButton("Guardar");
+		save.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				boolean var = true;
+				while (var) {
+					String path;
+					path = JOptionPane.showInputDialog(frame, "Introduza o caminho para guardar o ficheiro");
+					if (path == null) {
+						var = false;
+					} else {
+						var = Functions.save(tabela1, 0, path);
+						if (var == true) {
+							JOptionPane.showMessageDialog(frame, "O caminho especificado não foi encontrado");
+						}
+					}
 				}
-			});
-	 
-	 extra.add(new JLabel("Configuração Manual"));
-	 extra.add(runmanual);
-	 extra.add(save);
-	 manual.add(extra);
-	 manual.add(resulman);
-	 manual.add(scroll);
-	 
-	 
-	 
-	 //create the panel for automatic introduction
-	 
-	 	//Extra panel to ensure the buttons position
-		 JPanel extra1 = new JPanel();
-		 extra1.setLayout(new GridLayout(3,0));
-		 
-		 //main panel
-		 JPanel auto = new JPanel();
-		 auto.setLayout(new FlowLayout());
-		
-		 JTextArea resulauto = new JTextArea();
-		 
-		 //button to generate automatic configuration
-		 runauto = new JButton("Gerar Configuração");
-		 runauto.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
+			}
+		});
+
+		extra.add(new JLabel("Configuração Manual"));
+		extra.add(runmanual);
+		extra.add(save);
+		manual.add(extra);
+		manual.add(resulman);
+		manual.add(scroll);
+
+		// create the panel for automatic introduction
+
+		// Extra panel to ensure the buttons position
+		JPanel extra1 = new JPanel();
+		extra1.setLayout(new GridLayout(3, 0));
+
+		// main panel
+		JPanel auto = new JPanel();
+		auto.setLayout(new FlowLayout());
+
+		JTextArea resulauto = new JTextArea();
+
+		// button to generate automatic configuration
+		runauto = new JButton("Gerar Configuração");
+		runauto.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (regras.getText().equals("") || spam1.getText().equals("") || ham1.getText().equals("")) {
+					JOptionPane.showMessageDialog(frame, "Tem de preencher todas as opções");
+				} else {
 					try {
 						AntiSpamFilterAutomaticConfiguration.automatic(rulespath, hampath, spampath);
 						String[] fx = Functions.readAutomatic();
-						resulauto.setText("FP:"+fx[0]+System.lineSeparator()+"FN:"+fx[1]+System.lineSeparator()+"                    ");
+						resulauto.setText("FP:" + fx[0] + System.lineSeparator() + "FN:" + fx[1]
+								+ System.lineSeparator() + "                    ");
 						RP[] regras = Functions.readConfig(Integer.valueOf(fx[2]));
 						((DefaultTableModel) tabela2.getModel()).getDataVector().removeAllElements();
-						for(int i =0;i<regras.length;i++){
-							((DefaultTableModel) tabela2.getModel()).insertRow(tabela2.getRowCount(),(regras[i].getVector()));
+						for (int i = 0; i < regras.length; i++) {
+							((DefaultTableModel) tabela2.getModel()).insertRow(tabela2.getRowCount(),
+									(regras[i].getVector()));
 						}
 
 					} catch (IOException e1) {
@@ -254,53 +265,62 @@ public class Gui extends AbstractTableModel {
 						e1.printStackTrace();
 					}
 				}
-			});
-		 
-		 //button to generate the generated configuration
-		 JButton save1 = new JButton("Guardar");
-		 save1.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					Functions.save(tabela2,1);
+			}
+		});
+
+		// button to save the generated configuration
+		JButton save1 = new JButton("Guardar");
+		save1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				boolean var = true;
+				while (var) {
+					String path;
+					path = JOptionPane.showInputDialog(frame, "Introduza o caminho para guardar o ficheiro");
+					if (path == null) {
+						var = false;
+					} else {
+						var = Functions.save(tabela2, 0, path);
+						if (var == true) {
+							JOptionPane.showMessageDialog(frame, "O caminho especificado não foi encontrado");
+						}
+					}
 				}
-			});
-		 
-		 
-		 //text area that shows the test results
-		 
-		 resulauto.setSize(400, 200);
-		 resulauto.setEditable(false);
-		 resulauto.setFont(resulman.getFont().deriveFont(24f));
-		 resulauto.setText("FP: 0"+System.lineSeparator()+"FN: 0"+System.lineSeparator()+"                    ");
-		 
-		 
-		 //table that shows the rules and it's weight automatically generated
-		 RP[] allrules1 = Functions.getRules("rules.cf");
-		 
-		 model1 = new DefaultTableModel(Functions.getVector(allrules),colums){
-			 public boolean isCellEditable(int row, int col) {
-			            return false;
-			    }
-		 };
-		 
-		 tabela2 = new JTable(model1);
-		 
-		 extra1.add(new JLabel("Configuração Automática"));
-		 extra1.add(runauto);
-		 extra1.add(save1);
-		 auto.add(extra1);
-		 auto.add(resulauto);
-		 auto.add(new JScrollPane(tabela2));
-	 
-	 
-	 
-	 
-	 join.add(manual);
-	 join.add(auto);
-	 frame.add(join, BorderLayout.CENTER);
+			}
+		});
+
+		// text area that shows the test results
+
+		resulauto.setSize(400, 200);
+		resulauto.setEditable(false);
+		resulauto.setFont(resulman.getFont().deriveFont(24f));
+		resulauto.setText("FP: 0" + System.lineSeparator() + "FN: 0" + System.lineSeparator() + "                    ");
+
+		// table that shows the rules and it's weight automatically generated
+		RP[] allrules1 = Functions.getRules("rules.cf");
+
+		model1 = new DefaultTableModel(Functions.getVector(allrules), colums) {
+			public boolean isCellEditable(int row, int col) {
+				return false;
+			}
+		};
+
+		tabela2 = new JTable(model1);
+
+		extra1.add(new JLabel("Configuração Automática"));
+		extra1.add(runauto);
+		extra1.add(save1);
+		auto.add(extra1);
+		auto.add(resulauto);
+		auto.add(new JScrollPane(tabela2));
+
+		join.add(manual);
+		join.add(auto);
+		frame.add(join, BorderLayout.CENTER);
 	}
 
 	/**
 	 * Function that get the path of the rules file
+	 * 
 	 * @return the path of the rules
 	 */
 	public String getRulespath() {
@@ -309,6 +329,7 @@ public class Gui extends AbstractTableModel {
 
 	/**
 	 * Function that get the path of the ham file
+	 * 
 	 * @return the path of the rules
 	 */
 	public String getHampath() {
@@ -317,6 +338,7 @@ public class Gui extends AbstractTableModel {
 
 	/**
 	 * Function that get the path of the spam file
+	 * 
 	 * @return the path of the spam
 	 */
 	public String getSpampath() {
@@ -350,22 +372,20 @@ public class Gui extends AbstractTableModel {
 		return null;
 	}
 
-
 	public JPanel getManual() {
 		return manual;
 	}
-	
-	public JButton getRunManual(){
+
+	public JButton getRunManual() {
 		return runmanual;
 	}
-	
-	public JButton getRunAuto(){
+
+	public JButton getRunAuto() {
 		return runauto;
 	}
-	
-	public JButton getConfirm(){
+
+	public JButton getConfirm() {
 		return confirm;
 	}
-	
-}
 
+}
