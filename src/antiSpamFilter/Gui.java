@@ -192,6 +192,7 @@ public class Gui extends AbstractTableModel {
 						Vector linha = (Vector) tabela.elementAt(i);
 						allrules[i].setRegra(linha.elementAt(0).toString());
 						allrules[i].setPeso(Double.parseDouble(linha.elementAt(1).toString()));
+						
 
 					}
 					int fn = Functions.Fp(allrules, hampath);
