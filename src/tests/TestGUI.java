@@ -29,7 +29,7 @@ public class TestGUI {
 	public void testRunManual() {
 		Gui subjects = new Gui();
 		
-		subjects.getRunManual().getActionListeners()[0].actionPerformed(null);
+		subjects.getRunManual().doClick();
 		
 		
 	}
@@ -38,7 +38,7 @@ public class TestGUI {
 	public void testRunAuto() {
 		Gui subjects = new Gui();
 		
-		subjects.getRunAuto().getActionListeners()[0].actionPerformed(null);
+		subjects.getRunAuto().doClick();
 		
 		
 	}
@@ -47,7 +47,7 @@ public class TestGUI {
 	public void testConfirm() {
 		Gui subjects = new Gui();
 		
-		subjects.getConfirm().getActionListeners()[0].actionPerformed(null);
+		subjects.getConfirm().doClick();
 				
 		
 		

@@ -17,9 +17,11 @@ public class TestAntiSpamFilterAutomaticConfiguration {
 	String hamExample = "jUnitTests/FilesExample/hamExample.log";
 	
 	@Test
-	public void testAntiSpamFilterAutomaticConfiguration() {
+	public void automatic() {
 		AntiSpamFilterAutomaticConfiguration subjectA = new AntiSpamFilterAutomaticConfiguration();
 		AntiSpamFilterAutomaticConfiguration subjectB = new AntiSpamFilterAutomaticConfiguration();		
+		
+		
 		
 	}
 

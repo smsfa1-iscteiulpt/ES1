@@ -137,7 +137,6 @@ public class Functions {
 	 * Function that saves the values of the rules in a file.
 	 * 
 	 * @param tabela1 is the table where the rules are
-	 * @param m is what defines if we are saving the rules manually or automatically.
 	 */
 	public static void save(JTable tabela1, String path) {
 		
