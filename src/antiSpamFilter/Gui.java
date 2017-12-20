@@ -366,4 +366,7 @@ public class Gui extends AbstractTableModel {
 		return confirm;
 	}
 
+	public JTable getTabela1() {
+		return tabela1;
+	}
 }

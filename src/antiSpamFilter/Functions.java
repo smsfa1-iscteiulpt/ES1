@@ -144,11 +144,7 @@ public class Functions {
 		try {
 			PrintWriter print = new PrintWriter(path);
 			for (int j = 0; j < tabela1.getRowCount(); j++) {
-				if (tabela1.getValueAt(j, 1).equals(0)) {
-					print.println((String) tabela1.getValueAt(j, 0));
-				} else {
 					print.println((String) tabela1.getValueAt(j, 0) + " " + tabela1.getValueAt(j, 1));
-				}
 			}
 			print.close();
 		} catch (FileNotFoundException e) {

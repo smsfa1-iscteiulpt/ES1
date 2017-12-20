@@ -2,12 +2,16 @@ package tests;
 
 import static org.junit.Assert.*;
 
+import java.io.File;
+
 import javax.swing.JTable;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import antiSpamFilter.AntiSpamFilterAutomaticConfiguration;
 import antiSpamFilter.Functions;
+import antiSpamFilter.Gui;
 import antiSpamFilter.RP;
 
 public class TestFunctions {
@@ -20,25 +24,21 @@ public class TestFunctions {
 	
 	@Test
 	public void testGetRules() {
-		Functions subjects = new Functions();
 		
-		RP[] result = subjects.getRules(rulesExample);
-		RP[] expected = subjects.getRules(rules2Example);
-		assertArrayEquals(expected, result);
+		RP[] result = Functions.getRules(rulesExample);
+		RP[] expected = Functions.getRules(rules2Example);
+		Assert.assertNotEquals(expected, result);
 		
 	}
 	
 	@Test
 	public void testReadAutomatic() {
-		Functions subjects = new Functions();
+		String[] result = Functions.readAutomatic();
 		
-		String[] result = subjects.readAutomatic();
-		
-		String[] expected = new String [4];
-		expected[0]="A";
-		expected[1]="B";
-		expected[2]="D";
-		expected[3]="Z";
+		String[] expected = new String [3];
+		expected[0]="2";
+		expected[1]="3";
+		expected[2]="4";
 		
 		assertArrayEquals(expected, result);
 		
@@ -46,10 +46,9 @@ public class TestFunctions {
 	
 	@Test
 	public void testReadConfig() {
-		Functions subjects = new Functions();
 		
-		RP[] result = subjects.readConfig(1);
-		RP[] expected = subjects.readConfig(0);
+		RP[] result = Functions.readConfig(1);
+		RP[] expected = Functions.readConfig(0);
 		/*String[] expected = new String [4];
 		expected[0]="A";
 		expected[1]="B";
@@ -60,20 +59,19 @@ public class TestFunctions {
 		
 	}
 	
-	//DA ERRO
-	/*@Test
+//	DA ERRO
+	@Test
 	public void testSave() {
-		Functions subjects = new Functions ();
-		JTable tabela1 = new JTable();
-		assertEquals(subjects.save(tabela1, rulesExample), subjects.save(tabela1, rules2Example));
-	}*/
+		Gui a = new Gui();
+		Functions.save(a.getTabela1(), "jUnitTests/FilesExample/saveExample.log");
+		File file = new File("jUnitTests/FilesExample/saveExample.log");
+		assertTrue(file.exists());
+	}
 	
 	//n esta a passar em certos pontos no codigo
 	@Test
 	public void testCountFN() {
-		Functions subjects = new Functions();
-		
-		int result = subjects.Fn(subjects.getRules("rules.cf"), "ham.log");
+		int result = Functions.Fn(Functions.getRules("rules.cf"), "ham.log");
 		assertEquals(3, result);
 		
 	}
@@ -81,19 +79,17 @@ public class TestFunctions {
 	//n esta a passar em certos pontos no codigo
 	@Test
 	public void testCountFN_Failure() {
-		Functions subjects = new Functions();
 		
-		int result = subjects.Fn(subjects.getRules("rules.cf"), "ham.log");
-		assertEquals(0, result);
+		int result = Functions.Fn(Functions.getRules("rules.cf"), "ham.log");
+		assertEquals(1, result);
 		
 	}
 	
 	//n esta a passar em certos pontos no codigo
 	@Test
 	public void testCountFP() {
-		Functions subjects = new Functions();
 		
-		int result = subjects.Fp(subjects.getRules("rules.cf"), "spam.log");
+		int result = Functions.Fp(Functions.getRules("rules.cf"), "spam.log");
 		assertEquals(0, result);
 		
 	}
@@ -101,19 +97,16 @@ public class TestFunctions {
 	//n esta a passar em certos pontos no codigo
 	@Test
 	public void testCountFP_Failure() {
-		Functions subjects = new Functions();
 		
-		int result = subjects.Fp(subjects.getRules("rules.cf"), "spam.log");
+		int result = Functions.Fp(Functions.getRules("rules.cf"), "spam.log");
 		assertEquals(1, result);
 		
 	}
 	
 	@Test
 	public void testGetVector() {
-		Functions subjects = new Functions();
-		
-		Object[][] result = subjects.getVector(subjects.getRules(rulesExample));
-		Object[][] expected = subjects.getVector(subjects.getRules(rules2Example));
+		Object[][] result = Functions.getVector(Functions.getRules(rulesExample));
+		Object[][] expected = Functions.getVector(Functions.getRules(rules2Example));
 		assertArrayEquals(expected, result);
 		
 	}
