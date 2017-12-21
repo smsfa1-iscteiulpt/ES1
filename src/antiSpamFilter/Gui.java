@@ -49,6 +49,9 @@ public class Gui extends AbstractTableModel {
 	private JButton runmanual;
 	private JButton runauto;
 	private JButton confirm;
+	private JTextArea regras;
+	private JTextArea ham1;
+	private JTextArea spam1;
 
 	/**
 	 * Creating the window.
@@ -82,16 +85,16 @@ public class Gui extends AbstractTableModel {
 		config.setBorder(new EmptyBorder(2, 0, 2, 100));
 
 		// Labels
-		JLabel rules = new JLabel("rules.cf");
-		JLabel ham = new JLabel("ham.log");
-		JLabel spam = new JLabel("spam.log");
+		 JLabel rules = new JLabel("rules.cf");
+		 JLabel ham = new JLabel("ham.log");
+		 JLabel spam = new JLabel("spam.log");
 
 		// Text areas to insert the path to open the files
-		JTextArea regras = new JTextArea();
+		 regras = new JTextArea();
 		regras.setFont(regras.getFont().deriveFont(16f));
-		JTextArea ham1 = new JTextArea();
+		 ham1 = new JTextArea();
 		ham1.setFont(ham1.getFont().deriveFont(16f));
-		JTextArea spam1 = new JTextArea();
+		 spam1 = new JTextArea();
 		spam1.setFont(spam1.getFont().deriveFont(16f));
 
 		// button that deletes the paths
@@ -350,6 +353,16 @@ public class Gui extends AbstractTableModel {
 		return null;
 	}
 
+	public JTextArea getRegras() {
+		return regras;
+	}
+	public JTextArea getHam() {
+		return ham1;
+	}
+	public JTextArea getSpam() {
+		return spam1;
+	}
+	
 	public JPanel getManual() {
 		return manual;
 	}

@@ -46,12 +46,11 @@ public class TestGUI {
 	@Test
 	public void testConfirm() {
 		Gui subjects = new Gui();
-		
+		subjects.getRegras().setText("rules.cf");
+		subjects.getSpam().setText("spam.log");
+		subjects.getHam().setText("ham.log");
 		subjects.getConfirm().doClick();
-				
-		
-		
-		
+					
 	}
 	//confirm
 	//runManual
