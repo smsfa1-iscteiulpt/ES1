@@ -13,6 +13,20 @@ import antiSpamFilter.RP;
 
 public class TestGUI {
 	
+	
+	
+	@Test
+	public void testApagar() {
+		Gui subjects = new Gui();
+		subjects.getRegras().setText("rules.cf");
+		subjects.getSpam().setText("spam.log");
+		subjects.getHam().setText("ham.log");
+		
+		subjects.getApagar().doClick();
+		
+		
+	}
+	
 	@Test
 	public void testManual() {
 		Gui subjects = new Gui();
@@ -35,6 +49,7 @@ public class TestGUI {
 		subjects.getSpam().setText("spam.log");
 		subjects.getHam().setText("ham.log");
 		
+		subjects.getConfirm().doClick();
 		subjects.getRunManual().doClick();
 		
 		
@@ -47,6 +62,7 @@ public class TestGUI {
 		subjects.getSpam().setText("spam.log");
 		subjects.getHam().setText("ham.log");
 		
+		//subjects.getConfirm().doClick();
 		subjects.getRunAuto().doClick();
 		
 		
@@ -61,6 +77,32 @@ public class TestGUI {
 		subjects.getConfirm().doClick();
 					
 	}
+	
+	@Test
+	public void testGetRulespath() {
+		Gui subjects = new Gui();
+		subjects.getRegras().setText("rules.cf");
+		subjects.getRulespath();
+					
+	}
+	
+	@Test
+	public void testGetHampath() {
+		Gui subjects = new Gui();
+		subjects.getHam().setText("ham.log");
+		subjects.getHampath();
+					
+	}
+	
+	@Test
+	public void testGetSpampath() {
+		Gui subjects = new Gui();
+		subjects.getSpam().setText("spam.log");
+		subjects.getSpampath();
+					
+	}
+	
+	
 	//confirm
 	//runManual
 	//runAuto

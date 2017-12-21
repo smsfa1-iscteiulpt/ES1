@@ -2,8 +2,8 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2017-12-21T03:08:14</date>
-  <millis>1513822094512</millis>
+  <date>2017-12-21T23:11:05</date>
+  <millis>1513897865374</millis>
   <sequence>0</sequence>
   <logger>org.uma.jmetal.util.JMetalLogger</logger>
   <level>INFO</level>
@@ -13,8 +13,8 @@
   <message>Loggers configured with null</message>
 </record>
 <record>
-  <date>2017-12-21T03:08:14</date>
-  <millis>1513822094538</millis>
+  <date>2017-12-21T23:11:05</date>
+  <millis>1513897865395</millis>
   <sequence>1</sequence>
   <logger>org.uma.jmetal.util.JMetalLogger</logger>
   <level>INFO</level>
@@ -24,8 +24,8 @@
   <message>ExecuteAlgorithms: Preparing output directory</message>
 </record>
 <record>
-  <date>2017-12-21T03:08:14</date>
-  <millis>1513822094545</millis>
+  <date>2017-12-21T23:11:05</date>
+  <millis>1513897865407</millis>
   <sequence>2</sequence>
   <logger>org.uma.jmetal.util.JMetalLogger</logger>
   <level>INFO</level>

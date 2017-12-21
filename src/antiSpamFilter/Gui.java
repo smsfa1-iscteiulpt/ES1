@@ -49,6 +49,7 @@ public class Gui extends AbstractTableModel {
 	private JButton runmanual;
 	private JButton runauto;
 	private JButton confirm;
+	private JButton reset;
 	private JTextArea regras;
 	private JTextArea ham1;
 	private JTextArea spam1;
@@ -98,7 +99,7 @@ public class Gui extends AbstractTableModel {
 		spam1.setFont(spam1.getFont().deriveFont(16f));
 
 		// button that deletes the paths
-		JButton reset = new JButton("Apagar");
+		reset = new JButton("Apagar");
 
 		reset.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -381,5 +382,9 @@ public class Gui extends AbstractTableModel {
 
 	public JTable getTabela1() {
 		return tabela1;
+	}
+	
+	public JButton getApagar(){
+		return reset;
 	}
 }

@@ -113,8 +113,8 @@ public class TestFunctions {
 	
 	@Test
 	public void testGetVector() {
-		Object[][] result = Functions.getVector(Functions.getRules("jUnitTests/FilesExample/rulesExample.cf"));
-		Object[][] expected = Functions.getVector(Functions.getRules("jUnitTests/FilesExample/rules2Example.cf"));
+		Object[][] result = Functions.getVector(Functions.getRules("rules.cf"));
+		Object[][] expected = Functions.getVector(Functions.getRules("rules.cf"));
 		assertArrayEquals(expected, result);
 		
 	}
