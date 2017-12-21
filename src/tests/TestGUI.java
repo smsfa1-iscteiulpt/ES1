@@ -102,7 +102,29 @@ public class TestGUI {
 					
 	}
 	
+	@Test
+	public void testGetColumnCount() {
+		Gui subjects = new Gui();
+		
+		subjects.getColumnCount();
+					
+	}
 	
+	@Test
+	public void testGetRowCount() {
+		Gui subjects = new Gui();
+		
+		subjects.getRowCount();
+					
+	}
+	
+	@Test
+	public void testGetValueAt() {
+		Gui subjects = new Gui();
+		
+		subjects.getValueAt(1, 1);
+					
+	}
 	//confirm
 	//runManual
 	//runAuto
