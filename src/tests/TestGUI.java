@@ -16,6 +16,9 @@ public class TestGUI {
 	@Test
 	public void testManual() {
 		Gui subjects = new Gui();
+		subjects.getRegras().setText("rules.cf");
+		subjects.getSpam().setText("spam.log");
+		subjects.getHam().setText("ham.log");
 		
 		JPanel result = subjects.getManual();
 		JPanel expected = subjects.getManual();
@@ -28,6 +31,9 @@ public class TestGUI {
 	@Test
 	public void testRunManual() {
 		Gui subjects = new Gui();
+		subjects.getRegras().setText("rules.cf");
+		subjects.getSpam().setText("spam.log");
+		subjects.getHam().setText("ham.log");
 		
 		subjects.getRunManual().doClick();
 		
@@ -37,6 +43,9 @@ public class TestGUI {
 	@Test
 	public void testRunAuto() {
 		Gui subjects = new Gui();
+		subjects.getRegras().setText("rules.cf");
+		subjects.getSpam().setText("spam.log");
+		subjects.getHam().setText("ham.log");
 		
 		subjects.getRunAuto().doClick();
 		
