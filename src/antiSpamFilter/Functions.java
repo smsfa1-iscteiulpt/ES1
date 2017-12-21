@@ -181,7 +181,6 @@ public class Functions {
 				score=0;
 			}
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
 			System.exit(0);
 		}
 		return fn;
@@ -216,7 +215,6 @@ public class Functions {
 				score=0;
 			}
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
 			System.exit(0);
 		}
 		return fp;

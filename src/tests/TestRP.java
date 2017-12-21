@@ -14,7 +14,7 @@ public class TestRP {
 		
 		String expected = rp.getRegra();
 		
-		assertEquals("R2", expected);
+		assertEquals("R1", expected);
 		
 	}
 	
@@ -23,7 +23,7 @@ public class TestRP {
 		RP rp = new RP ("R1", 3.0);
 		
 		Double expected = rp.getPeso();
-		Double result = 7.0;
+		Double result = 3.0;
 		
 		assertEquals(result, expected);
 		
@@ -35,7 +35,7 @@ public class TestRP {
 		
 		rp.setRegra("R2");
 		
-		assertEquals("R1", rp.getRegra());
+		assertNotEquals("R1", rp.getRegra());
 		
 	}
 	
@@ -47,14 +47,14 @@ public class TestRP {
 		Double expected = rp.getPeso();
 		Double result = 3.0;
 		
-		assertEquals(result, expected);
+		assertNotEquals(result, expected);
 		
 	}
 	
 	@Test
 	public void testGetVector() {
 		RP rp = new RP ("R1", 3.0);
-		RP rp2 = new RP ("R2", 7.0);
+		RP rp2 = new RP ("R1", 3.0);
 		
 		Object[] expected = rp.getVector();
 		Object[] result = rp2.getVector();

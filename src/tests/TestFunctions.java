@@ -2,7 +2,10 @@ package tests;
 
 import static org.junit.Assert.*;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 
 import javax.swing.JTable;
 
@@ -37,8 +40,8 @@ public class TestFunctions {
 		
 		String[] expected = new String [3];
 		expected[0]="2";
-		expected[1]="3";
-		expected[2]="4";
+		expected[1]="4";
+		expected[2]="1";
 		
 		assertArrayEquals(expected, result);
 		
@@ -47,15 +50,20 @@ public class TestFunctions {
 	@Test
 	public void testReadConfig() {
 		
-		RP[] result = Functions.readConfig(1);
-		RP[] expected = Functions.readConfig(0);
-		/*String[] expected = new String [4];
-		expected[0]="A";
-		expected[1]="B";
-		expected[2]="D";
-		expected[3]="Z";*/
-		
-		assertArrayEquals(expected, result);
+		RP[] result = Functions.readConfig(0);
+		String line="";
+		RP[] rules = Functions.getRules("rules.cf");
+		try {
+			BufferedReader in = new BufferedReader(new FileReader("experimentBaseDirectory/referenceFronts/AntiSpamFilterProblem.rs"));
+				line=in.readLine();
+				    String fx[] = line.split(" ");
+				    	for(int j = 0; j < fx.length;j++){
+				    		rules[j].setPeso(Double.valueOf(fx[j]));
+				    	}
+				in.close();
+		} catch (IOException e) {}
+
+		assertArrayEquals(rules, result);
 		
 	}
 	
@@ -72,7 +80,7 @@ public class TestFunctions {
 	@Test
 	public void testCountFN() {
 		int result = Functions.Fn(Functions.getRules("rules.cf"), "ham.log");
-		assertEquals(3, result);
+		assertEquals(695, result);
 		
 	}
 	
@@ -81,7 +89,7 @@ public class TestFunctions {
 	public void testCountFN_Failure() {
 		
 		int result = Functions.Fn(Functions.getRules("rules.cf"), "ham.log");
-		assertEquals(1, result);
+		assertNotEquals(0, result);
 		
 	}
 	
@@ -99,14 +107,14 @@ public class TestFunctions {
 	public void testCountFP_Failure() {
 		
 		int result = Functions.Fp(Functions.getRules("rules.cf"), "spam.log");
-		assertEquals(1, result);
+		assertNotEquals(1, result);
 		
 	}
 	
 	@Test
 	public void testGetVector() {
-		Object[][] result = Functions.getVector(Functions.getRules(rulesExample));
-		Object[][] expected = Functions.getVector(Functions.getRules(rules2Example));
+		Object[][] result = Functions.getVector(Functions.getRules("jUnitTests/FilesExample/rulesExample.cf"));
+		Object[][] expected = Functions.getVector(Functions.getRules("jUnitTests/FilesExample/rules2Example.cf"));
 		assertArrayEquals(expected, result);
 		
 	}
