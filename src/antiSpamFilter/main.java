@@ -11,6 +11,8 @@ package antiSpamFilter;
 
 public class main {
 	
+	private Gui j;
+	
 	/**
 	 * Initializing the application
 	 * @param args

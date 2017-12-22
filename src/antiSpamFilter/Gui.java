@@ -53,6 +53,8 @@ public class Gui extends AbstractTableModel {
 	private JTextArea regras;
 	private JTextArea ham1;
 	private JTextArea spam1;
+	private AntiSpamFilterProblem filter;
+	private AntiSpamFilterAutomaticConfiguration automatic;
 
 	/**
 	 * Creating the window.
