@@ -84,7 +84,7 @@ public class TestFunctions {
 	}
 
 	/**
-	 * Test to see if the rules.cf is read
+	 * Test to see if the function readConfig works as expected
 	 * 
 	 * @throws NumberFormatException
 	 * @throws IOException
@@ -92,7 +92,6 @@ public class TestFunctions {
 	@Test
 	public void testReadConfig() throws NumberFormatException, IOException {
 
-		String[] ff = Functions.readAutomatic();
 		
 		RP[] rules = Functions.getRules("rules.cf");
 		int i = 0;
@@ -100,7 +99,7 @@ public class TestFunctions {
 		try {
 			BufferedReader in = new BufferedReader(new FileReader("experimentBaseDirectory/referenceFronts/AntiSpamFilterProblem.rs"));
 				while ((line = in.readLine()) != null) {
-					if(i == Integer.valueOf(ff[2])){
+					if(i == 0){
 				    String fx[] = line.split(" ");
 				    	for(int j = 0; j < fx.length;j++){
 				    		rules[j].setPeso(Double.valueOf(fx[j]));
@@ -112,9 +111,10 @@ public class TestFunctions {
 		} catch (IOException e) {}
 		
 
-		RP[] result = Functions.readConfig(Integer.valueOf(ff[2]));
+		RP[] result = Functions.readConfig(0);
 
-		assertEquals(rules[0], result[0]);
+		
+		assertEquals(result[0].getPeso(), rules[0].getPeso(),0);
 
 	}
 
