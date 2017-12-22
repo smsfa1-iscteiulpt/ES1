@@ -167,10 +167,11 @@ public class Gui extends AbstractTableModel {
 		resulman.setFont(resulman.getFont().deriveFont(24f));
 		resulman.setText("FP: 0" + System.lineSeparator() + "FN: 0" + System.lineSeparator() + "                    ");
 
-		allrules = Functions.getRules("rules.cf");
-
+//		allrules = Functions.getRules("rules.cf");
+		allrules = new RP[335];
+		
 		// table with the rules and it's weight
-		model = new DefaultTableModel(Functions.getVector(allrules), colums) {
+		model = new DefaultTableModel(new Object[335][2],colums) {
 			public boolean isCellEditable(int row, int col) {
 				if (col == 1) { // columnIndex: the column you want to make it
 								// editable
@@ -278,9 +279,9 @@ public class Gui extends AbstractTableModel {
 		resulauto.setText("FP: 0" + System.lineSeparator() + "FN: 0" + System.lineSeparator() + "                    ");
 
 		// table that shows the rules and it's weight automatically generated
-		RP[] allrules1 = Functions.getRules("rules.cf");
+//		RP[] allrules1 = Functions.getRules("rules.cf");
 
-		model1 = new DefaultTableModel(Functions.getVector(allrules), colums) {
+		model1 = new DefaultTableModel(new Object[335][2],colums) {
 			public boolean isCellEditable(int row, int col) {
 				return false;
 			}
