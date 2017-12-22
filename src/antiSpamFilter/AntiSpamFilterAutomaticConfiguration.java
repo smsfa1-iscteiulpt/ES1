@@ -37,9 +37,11 @@ public class AntiSpamFilterAutomaticConfiguration {
   
   /**
    * Function that generates automatic weights to the rules depending on the results of false positives and false negatives 
+   * 
    * @param rulesPath is the directory of the rules file 
    * @param hamPathis the directory of the ham file 
    * @param spamPath is the directory of the spam file 
+   * 
    * @throws IOException
    */
   public static void automatic(String rulesPath, String hamPath, String spamPath) throws IOException {
@@ -72,11 +74,7 @@ public class AntiSpamFilterAutomaticConfiguration {
     
   }
   
-  /**
-   * Function that creates an algorithm to generate automatic weights to the rules.
-   * @param problemList 
-   * @return
-   */
+ 
   static List<ExperimentAlgorithm<DoubleSolution, List<DoubleSolution>>> configureAlgorithmList(
           List<ExperimentProblem<DoubleSolution>> problemList) {
     List<ExperimentAlgorithm<DoubleSolution, List<DoubleSolution>>> algorithms = new ArrayList<>();

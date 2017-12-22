@@ -52,7 +52,7 @@ public class AntiSpamFilterProblem extends AbstractDoubleProblem {
 	  
 	  /**
 	   * Function that counts how many false positives are in the ham.log file
-	   * and how many false negatives are in spam.log file
+	   * and how many false negatives are in the spam.log file
 	   */
 	  public void evaluate(DoubleSolution solution){
 		RP[] rules = Functions.getRules("rules.cf");

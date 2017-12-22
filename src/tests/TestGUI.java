@@ -14,7 +14,9 @@ import antiSpamFilter.RP;
 public class TestGUI {
 	
 	
-	
+	/**
+	 * Test to see if the button delete runs with no errors
+	 */
 	@Test
 	public void testApagar() {
 		Gui subjects = new Gui();
@@ -27,6 +29,9 @@ public class TestGUI {
 		
 	}
 	
+	/**
+	 * Test to see if the Panel manual is created without errors
+	 */
 	@Test
 	public void testManual() {
 		Gui subjects = new Gui();
@@ -42,6 +47,9 @@ public class TestGUI {
 		
 	}
 	
+	/**
+	 * Test to see if the button to run the manual configuration works
+	 */
 	@Test
 	public void testRunManual() {
 		Gui subjects = new Gui();
@@ -55,6 +63,9 @@ public class TestGUI {
 		
 	}
 	
+	/**
+	 * Test to see if the button to run the automatic configuration works
+	 */
 	@Test
 	public void testRunAuto() {
 		Gui subjects = new Gui();
@@ -68,6 +79,9 @@ public class TestGUI {
 		
 	}
 	
+	/**
+	 * Test to see if the confirm button works without any error
+	 */
 	@Test
 	public void testConfirm() {
 		Gui subjects = new Gui();
@@ -78,6 +92,9 @@ public class TestGUI {
 					
 	}
 	
+	/**
+	 * Test to see if we can get the rules.cf path correct
+	 */
 	@Test
 	public void testGetRulespath() {
 		Gui subjects = new Gui();
@@ -86,6 +103,9 @@ public class TestGUI {
 					
 	}
 	
+	/**
+	 * Test to see if we can get the ham.log path correct
+	 */
 	@Test
 	public void testGetHampath() {
 		Gui subjects = new Gui();
@@ -94,6 +114,9 @@ public class TestGUI {
 					
 	}
 	
+	/**
+	 * Test to see if we can get the spam.log path correct
+	 */
 	@Test
 	public void testGetSpampath() {
 		Gui subjects = new Gui();
@@ -102,6 +125,9 @@ public class TestGUI {
 					
 	}
 	
+	/**
+	 * test to count the column
+	 */
 	@Test
 	public void testGetColumnCount() {
 		Gui subjects = new Gui();
@@ -110,6 +136,9 @@ public class TestGUI {
 					
 	}
 	
+	/**
+	 * test to count the rows
+	 */
 	@Test
 	public void testGetRowCount() {
 		Gui subjects = new Gui();
@@ -118,6 +147,9 @@ public class TestGUI {
 					
 	}
 	
+	/**
+	 * Test to see if we can get the value at a certain position
+	 */
 	@Test
 	public void testGetValueAt() {
 		Gui subjects = new Gui();

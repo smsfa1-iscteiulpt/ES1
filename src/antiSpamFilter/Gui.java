@@ -353,37 +353,75 @@ public class Gui extends AbstractTableModel {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	
+	/**
+	 * Function that allow us to get what is written in the textArea that is used to put the rule file
+	 * @return what is written in the text area
+	 */
 	public JTextArea getRegras() {
 		return regras;
 	}
+	
+	/**
+	 * Function that allow us to get what is written in the textArea that is used to put the ham file
+	 * @return what is written in the text area
+	 */
 	public JTextArea getHam() {
 		return ham1;
 	}
+	
+	/**
+	 * Function that allow us to get what is written in the textArea that is used to put the spam file
+	 * @return what is written in the text area
+	 */
 	public JTextArea getSpam() {
 		return spam1;
 	}
 	
+	/**
+	 * Function that allow us to get the Manual Configuration Panel
+	 * @return the manual configuration panel
+	 */
 	public JPanel getManual() {
 		return manual;
 	}
-
+	
+	/**
+	 * Function that allow us to get the button that will test the manual configuration 
+	 * @return the runmanual button
+	 */
 	public JButton getRunManual() {
 		return runmanual;
 	}
-
+	
+	/**
+	 * Function that allow us to get the button that will generate automatic weights in the automatic configuration 
+	 * @return the runauto button
+	 */
 	public JButton getRunAuto() {
 		return runauto;
 	}
-
+	
+	/**
+	 * Function that allow us to get the button that is used to confirm the rules,ham and spam files
+	 * @return the confirm button
+	 */
 	public JButton getConfirm() {
 		return confirm;
 	}
-
+	
+	/**
+	 * Function that allow us to get rule table of the manual configuration
+	 * @return rule table (manual configuration)
+	 */
 	public JTable getTabela1() {
 		return tabela1;
 	}
 	
+	/**
+	 * Function that allow us to get the delete button (that deletes whats inside the rules.cf text box, the ham.log text box and the spam.log text box)
+	 * @return the reset button
+	 */
 	public JButton getApagar(){
 		return reset;
 	}

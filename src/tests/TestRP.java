@@ -7,7 +7,10 @@ import org.junit.Test;
 import antiSpamFilter.RP;
 
 public class TestRP {
-
+	
+	/**
+	 * Test to see if we could get the rule as we expected
+	 */
 	@Test
 	public void testGetRegra() {
 		RP rp = new RP ("R1", 3.0);
@@ -18,6 +21,9 @@ public class TestRP {
 		
 	}
 	
+	/**
+	 * Test to see if we could get the weight of a rule as we expected
+	 */
 	@Test
 	public void testGetPeso() {
 		RP rp = new RP ("R1", 3.0);
@@ -29,6 +35,9 @@ public class TestRP {
 		
 	}
 	
+	/**
+	 * Test to see if we could set a rule with no errors
+	 */
 	@Test
 	public void testSetRegra() {
 		RP rp = new RP ("R1", 3.0);
@@ -39,6 +48,9 @@ public class TestRP {
 		
 	}
 	
+	/**
+	 * Test to see if we could set a weight with no errors
+	 */
 	@Test
 	public void testSetPeso() {
 		RP rp = new RP ("R1", 3.0);
@@ -51,15 +63,18 @@ public class TestRP {
 		
 	}
 	
+	/**
+	 * Test to see if we could get the vector of a rule
+	 */
 	@Test
 	public void testGetVector() {
 		RP rp = new RP ("R1", 3.0);
-		RP rp2 = new RP ("R1", 3.0);
+		RP rp2 = new RP ("R2", 7.0);
 		
 		Object[] expected = rp.getVector();
 		Object[] result = rp2.getVector();
 		
-		assertArrayEquals(result, expected);
+		assertNotEquals(result, expected);
 		
 	}
 

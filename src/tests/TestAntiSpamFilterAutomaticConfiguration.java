@@ -16,6 +16,9 @@ public class TestAntiSpamFilterAutomaticConfiguration {
 	String spamExample = "jUnitTests/FilesExample/spamExample.log";
 	String hamExample = "jUnitTests/FilesExample/hamExample.log";
 	
+	/**
+	 * Test to see if it was created an AntiSpamFilterAutomaticConfiguration object without any problem
+	 */
 	@Test
 	public void automatic() {
 		AntiSpamFilterAutomaticConfiguration subjectA = new AntiSpamFilterAutomaticConfiguration();

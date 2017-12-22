@@ -25,6 +25,9 @@ public class TestFunctions {
 	String hamExample = "jUnitTests/FilesExample/hamExample.log";
 	/*String NSGAII_2 = "jUnitTests/TestFiles/NSGAII.rs";*/
 	
+	/**
+	 * Test to see if we could get the rules as we expected
+	 */
 	@Test
 	public void testGetRules() {
 		
@@ -34,6 +37,9 @@ public class TestFunctions {
 		
 	}
 	
+	/**
+	 * Test to see if the read automatic function works 
+	 */
 	@Test
 	public void testReadAutomatic() {
 		String[] result = Functions.readAutomatic();
@@ -47,6 +53,9 @@ public class TestFunctions {
 		
 	}
 	
+	/**
+	 * Test to see if the rules.cf is read 
+	 */
 	@Test
 	public void testReadConfig() {
 		
@@ -67,7 +76,9 @@ public class TestFunctions {
 		
 	}
 	
-//	DA ERRO
+	/**
+	 * Test to see if a file is saved
+	 */
 	@Test
 	public void testSave() {
 		Gui a = new Gui();
@@ -76,7 +87,9 @@ public class TestFunctions {
 		assertTrue(file.exists());
 	}
 	
-	//n esta a passar em certos pontos no codigo
+	/**
+	 * Test to see if the FN function works like we expected
+	 */
 	@Test
 	public void testCountFN() {
 		int result = Functions.Fn(Functions.getRules("rules.cf"), "ham.log");
@@ -84,7 +97,9 @@ public class TestFunctions {
 		
 	}
 	
-	//n esta a passar em certos pontos no codigo
+	/**
+	 * Test to see if the FN function works like we expected 
+	 */
 	@Test
 	public void testCountFN_Failure() {
 		
@@ -93,7 +108,9 @@ public class TestFunctions {
 		
 	}
 	
-	//n esta a passar em certos pontos no codigo
+	/**
+	 * Test to see if the FP function works like we expected
+	 */
 	@Test
 	public void testCountFP() {
 		
@@ -102,7 +119,9 @@ public class TestFunctions {
 		
 	}
 	
-	//n esta a passar em certos pontos no codigo
+	/**
+	 * Test to see if the FP function works like we expected
+	 */
 	@Test
 	public void testCountFP_Failure() {
 		
@@ -111,11 +130,14 @@ public class TestFunctions {
 		
 	}
 	
+	/**
+	 * Test to see if we could get the vector of the rules and it's weight that exist in the rules.cf
+	 */
 	@Test
 	public void testGetVector() {
 		Object[][] result = Functions.getVector(Functions.getRules("rules.cf"));
-		Object[][] expected = Functions.getVector(Functions.getRules("rules.cf"));
-		assertArrayEquals(expected, result);
+		Object[][] expected = Functions.getVector(Functions.getRules("rules1.cf"));
+		assertNotEquals(expected, result);
 		
 	}
 	
