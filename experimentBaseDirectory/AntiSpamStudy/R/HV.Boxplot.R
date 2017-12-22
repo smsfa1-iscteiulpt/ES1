@@ -13,5 +13,5 @@ titulo <-paste(indicator, problem, sep=":")
 title(main=titulo)
 }
 par(mfrow=c(1,1))
-indicator<-"HV.Boxplot.R"
+indicator<-"HV"
 qIndicator(indicator, "AntiSpamFilterProblem")
