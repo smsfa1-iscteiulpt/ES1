@@ -73,7 +73,7 @@ public class TestGUI {
 		subjects.getSpam().setText("spam.log");
 		subjects.getHam().setText("ham.log");
 		
-		//subjects.getConfirm().doClick();
+		subjects.getConfirm().doClick();
 		subjects.getRunAuto().doClick();
 		
 		
